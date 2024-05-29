@@ -1,4 +1,4 @@
-name: test
+name: viash test
 
 on:
   pull_request:
@@ -28,9 +28,9 @@ jobs:
   list:
     needs: run_ci_check_job
     env:
-      s3_bucket: s3://openproblems-bio/public/neurips-2023-competition/workflow-resources/
+      s3_bucket: s3://openproblems-data/resources_test/
     runs-on: ubuntu-latest
-    if: ${{ needs.run_ci_check_job.outputs.run_ci == 'true' }}
+    if: ${{needs.run_ci_check_job.outputs.run_ci == 'true'}}
 
     outputs:
       matrix: ${{ steps.set_matrix.outputs.matrix }}
@@ -47,8 +47,8 @@ jobs:
       id: cache
       with:
         s3_bucket: $s3_bucket
-        dest_path: resources
-        cache_key_prefix: resources__
+        dest_path: resources_test
+        cache_key_prefix: resources_test__
 
     - id: ns_list
       uses: viash-io/viash-actions/ns-list@v5
@@ -94,7 +94,7 @@ jobs:
       uses: actions/cache@v4
       timeout-minutes: 10
       with:
-        path: resources
+        path: resources_test
         key: ${{ needs.list.outputs.cache_key }}
 
     - name: Run test
@@ -104,3 +104,4 @@ jobs:
           "${{ matrix.component.config }}" \
           --cpus 2 \
           --memory "5gb"
+
