@@ -126,7 +126,7 @@ Slot description:
 ## Component type: Data processor
 
 Path:
-[`src/dataset_processor`](https://github.com/openproblems-bio/openproblems-v2/tree/main/src/dataset_processor)
+[`src/process_dataset`](https://github.com/openproblems-bio/openproblems-v2/tree/main/src/process_dataset)
 
 A spatial decomposition dataset processor.
 
