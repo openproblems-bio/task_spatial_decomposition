@@ -1,5 +1,5 @@
 functionality:
-  name: "process_dataset"
+  namespace: dataset_processor
   info:
     type: process_dataset
     type_info:
