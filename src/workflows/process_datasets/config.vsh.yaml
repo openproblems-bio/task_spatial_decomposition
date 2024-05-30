@@ -39,7 +39,7 @@ functionality:
     - name: common/check_dataset_schema
       repository: openproblems_v2
     - name: dataset_simulator
-    - name: dataset_processor/process_dataset
+    - name: process_dataset/split_dataset
   repositories:
     - name: openproblems_v2
       type: github

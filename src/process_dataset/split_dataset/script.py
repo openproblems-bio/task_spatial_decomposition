@@ -10,9 +10,9 @@ par = {
     "output_solution": "solution.h5ad",
 }
 meta = {
-    "functionality_name": "process_dataset",
-    "resources_dir": "src/tasks/spatial_decomposition/process_dataset",
-    "config": "target/nextflow/spatial_decomposition/process_dataset/.config.vsh.yaml"
+    "functionality_name": "split_dataset",
+    "resources_dir": "src/process_dataset/split_dataset",
+    "config": "target/nextflow/process_dataset/split_dataset/.config.vsh.yaml"
 }
 ## VIASH END
 

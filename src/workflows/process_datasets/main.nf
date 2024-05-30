@@ -48,7 +48,7 @@ workflow run_wf {
       auto: [publish: true]
     )
 
-    | process_dataset.run(
+    | split_dataset.run(
       fromState: [ input: "dataset" ],
       toState: [
         output_single_cell: "output_single_cell",
