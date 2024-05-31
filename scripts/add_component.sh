@@ -8,8 +8,8 @@ exit 1
 type="method"
 lang="python" # change this to "r" if need be
 
-viash run ../openproblems-v2/src/common/create_component/config.vsh.yaml -- \
-  --task label_projection \
+viash run src/common/src/create_component/config.vsh.yaml -- \
+  --task spatial_decomposition \
   --type $type \
   --name component_name \
   --language $lang

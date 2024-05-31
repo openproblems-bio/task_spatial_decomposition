@@ -1,6 +1,6 @@
 #!/bin/bash
 
-target/docker/common/create_task_readme/create_task_readme \
+viash run src/common/src/create_task_readme/config.vsh.yaml -- \
   --task "spatial_decomposition" \
   --task_dir "src/" \
   --github_url "https://github.com/openproblems-bio/task-spatial-decomposition/tree/main/" \
