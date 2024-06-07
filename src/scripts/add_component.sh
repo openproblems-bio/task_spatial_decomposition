@@ -8,7 +8,7 @@ exit 1
 type="method"
 lang="python" # change this to "r" if need be
 
-src/common/create_component/create_component \
+common/create_component/create_component \
   --task spatial_decomposition \
   --type $type \
   --name component_name \
