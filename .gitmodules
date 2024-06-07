@@ -1,3 +1,6 @@
 [submodule "src/common"]
 	path = src/common
 	url = https://github.com/openproblems-bio/common-resources.git
+[submodule "common"]
+	path = common
+	url = https://github.com/openproblems-bio/common-resources.git

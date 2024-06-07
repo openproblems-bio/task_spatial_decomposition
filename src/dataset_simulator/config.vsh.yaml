@@ -185,7 +185,7 @@ functionality:
       path: script.py
   test_resources:
     - type: python_script
-      path: /src/common/component_tests/run_and_check_output.py
+      path: /common/component_tests/run_and_check_output.py
     - path: /resources_test/common/cxg_mouse_pancreas_atlas
       dest: resources_test/common/cxg_mouse_pancreas_atlas
 platforms:

@@ -34,7 +34,7 @@ functionality:
     - type: nextflow_script
       path: main.nf
       entrypoint: run_wf
-    - path: /src/common/nextflow_helpers/helper.nf
+    - path: /common/nextflow_helpers/helper.nf
   dependencies:
     - name: common/check_dataset_schema
       repository: openproblems_v2
