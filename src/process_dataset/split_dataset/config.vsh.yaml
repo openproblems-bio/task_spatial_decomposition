@@ -4,7 +4,7 @@ functionality:
   resources:
     - type: python_script
       path: script.py
-    - path: /../openproblems-v2/src/common/helper_functions/subset_anndata.py
+    - path: /src/common/helper_functions/subset_anndata.py
 platforms:
   - type: docker
     image: ghcr.io/openproblems-bio/base_python:1.0.4
