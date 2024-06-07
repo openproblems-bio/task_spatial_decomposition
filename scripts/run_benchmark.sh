@@ -8,7 +8,7 @@ nextflow run . \
     -main-script target/nextflow/workflows/process_datasets/main.nf \
     -profile docker \
     -entry auto \
-    -c src/common/src/nextflow_helpers/labels_ci.config \
+    -c src/common/nextflow_helpers/labels_ci.config \
     --input_states "$RAW_DATA/**/state.yaml" \
     --rename_keys 'input:output_dataset' \
     --settings '{"output_spatial_masked": "$id/spatial_masked.h5ad", "output_single_cell": "$id/single_cell_ref.h5ad", "output_solution": "$id/solution.h5ad", "alpha": 1.0, "simulated_data": "$id/dataset_simulated.h5ad"}' \
