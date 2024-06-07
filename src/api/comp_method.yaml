@@ -21,9 +21,9 @@ functionality:
       required: true
   test_resources:
     - type: python_script
-      path: /../openproblems-v2/src/common/comp_tests/check_method_config.py
+      path: /src/common/component_tests/check_method_config.py
     - type: python_script
-      path: /src/common/src/component_tests/run_and_check_output.py
+      path: /src/common/component_tests/run_and_check_output.py
     - path: /resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas
       dest: resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas
-    - path: /../openproblems-v2/src/common/library.bib
+    - path: /src/common/library.bib

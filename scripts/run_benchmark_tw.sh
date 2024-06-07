@@ -57,4 +57,4 @@ tw launch https://github.com/openproblems-bio/task-spatial-decomposition.git \
   --compute-env 6TeIFgV5OY4pJCk8I0bfOh \
   --params-file /tmp/params.yaml \
   --entry-name auto \
-  --config src/common/src/nextflow_helpers/labels_tw.config \
+  --config src/common/nextflow_helpers/labels_tw.config \

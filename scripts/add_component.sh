@@ -8,7 +8,7 @@ exit 1
 type="method"
 lang="python" # change this to "r" if need be
 
-viash run src/common/src/create_component/config.vsh.yaml -- \
+src/common/create_component/create_component \
   --task spatial_decomposition \
   --type $type \
   --name component_name \
