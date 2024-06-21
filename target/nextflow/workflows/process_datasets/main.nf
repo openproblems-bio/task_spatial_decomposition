@@ -3168,9 +3168,9 @@ meta = [
           "name" : "",
           "repo" : "openproblems-bio/openproblems-v2",
           "tag" : "main_build",
-          "localPath" : "/tmp/viash_hub_repo4534812750375089671"
+          "localPath" : "/tmp/viash_hub_repo12794244047844385383"
         },
-        "foundConfigPath" : "/tmp/viash_hub_repo4534812750375089671/target/nextflow/common/check_dataset_schema/.config.vsh.yaml",
+        "foundConfigPath" : "/tmp/viash_hub_repo12794244047844385383/target/nextflow/common/check_dataset_schema/.config.vsh.yaml",
         "configInfo" : {
           "functionalityName" : "check_dataset_schema",
           "git_remote" : "https://github.com/openproblems-bio/openproblems-v2",
@@ -3200,7 +3200,7 @@ meta = [
           "functionalityNamespace" : "",
           "output" : "",
           "platform" : "",
-          "git_commit" : "c8473a97183c696051681264da41a546491875b7",
+          "git_commit" : "aa8ff5245a3c0c3fd1ce8b64421720a51518c7e2",
           "executable" : "/nextflow/dataset_simulator/main.nf"
         },
         "writtenPath" : "/home/runner/work/task-spatial-decomposition/task-spatial-decomposition/target/nextflow/dataset_simulator"
@@ -3221,7 +3221,7 @@ meta = [
           "functionalityNamespace" : "process_dataset",
           "output" : "",
           "platform" : "",
-          "git_commit" : "c8473a97183c696051681264da41a546491875b7",
+          "git_commit" : "aa8ff5245a3c0c3fd1ce8b64421720a51518c7e2",
           "executable" : "/nextflow/process_dataset/split_dataset/main.nf"
         },
         "writtenPath" : "/home/runner/work/task-spatial-decomposition/task-spatial-decomposition/target/nextflow/process_dataset/split_dataset"
@@ -3261,7 +3261,8 @@ meta = [
           "highcpu" : "cpus = 30",
           "lowtime" : "time = 1.h",
           "midtime" : "time = 4.h",
-          "hightime" : "time = 8.h"
+          "hightime" : "time = 8.h",
+          "veryhightime" : "time = 24.h"
         },
         "script" : [
           "process.errorStrategy = 'ignore'"
@@ -3276,7 +3277,7 @@ meta = [
     "platform" : "nextflow",
     "output" : "/home/runner/work/task-spatial-decomposition/task-spatial-decomposition/target/nextflow/workflows/process_datasets",
     "viash_version" : "0.8.6",
-    "git_commit" : "c8473a97183c696051681264da41a546491875b7",
+    "git_commit" : "aa8ff5245a3c0c3fd1ce8b64421720a51518c7e2",
     "git_remote" : "https://github.com/openproblems-bio/task-spatial-decomposition"
   }
 }'''))

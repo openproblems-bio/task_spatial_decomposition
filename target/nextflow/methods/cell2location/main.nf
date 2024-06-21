@@ -3143,7 +3143,7 @@ meta = [
       "type" : "docker",
       "id" : "docker",
       "image" : "ghcr.io/openproblems-bio/base_python:1.0.4",
-      "target_organization" : "openproblems-bio",
+      "target_organization" : "openproblems-bio/task-spatial-decomposition",
       "target_registry" : "ghcr.io",
       "namespace_separator" : "/",
       "resolve_volume" : "Automatic",
@@ -3196,7 +3196,8 @@ meta = [
           "highcpu" : "cpus = 30",
           "lowtime" : "time = 1.h",
           "midtime" : "time = 4.h",
-          "hightime" : "time = 8.h"
+          "hightime" : "time = 8.h",
+          "veryhightime" : "time = 24.h"
         },
         "script" : [
           "process.errorStrategy = 'ignore'"
@@ -3211,7 +3212,7 @@ meta = [
     "platform" : "nextflow",
     "output" : "/home/runner/work/task-spatial-decomposition/task-spatial-decomposition/target/nextflow/methods/cell2location",
     "viash_version" : "0.8.6",
-    "git_commit" : "c8473a97183c696051681264da41a546491875b7",
+    "git_commit" : "aa8ff5245a3c0c3fd1ce8b64421720a51518c7e2",
     "git_remote" : "https://github.com/openproblems-bio/task-spatial-decomposition"
   }
 }'''))
@@ -3744,7 +3745,7 @@ meta["defaults"] = [
   directives: readJsonBlob('''{
   "container" : {
     "registry" : "ghcr.io",
-    "image" : "openproblems-bio/methods/cell2location",
+    "image" : "openproblems-bio/task-spatial-decomposition/methods/cell2location",
     "tag" : "main_build"
   },
   "label" : [
