@@ -423,7 +423,7 @@ RUN pip install --upgrade pip && \
   pip install --upgrade --no-cache-dir "tangram-sc"
 
 LABEL org.opencontainers.image.description="Companion container for running component methods tangram"
-LABEL org.opencontainers.image.created="2024-06-17T11:05:33Z"
+LABEL org.opencontainers.image.created="2024-06-21T11:01:17Z"
 LABEL org.opencontainers.image.source="https://github.com/openproblems-bio/task-spatial-decomposition"
 LABEL org.opencontainers.image.revision="c8473a97183c696051681264da41a546491875b7"
 LABEL org.opencontainers.image.version="main_build"

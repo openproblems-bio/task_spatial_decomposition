@@ -3168,9 +3168,9 @@ meta = [
           "name" : "",
           "repo" : "openproblems-bio/openproblems-v2",
           "tag" : "main_build",
-          "localPath" : "/tmp/viash_hub_repo56292816241811341"
+          "localPath" : "/tmp/viash_hub_repo4534812750375089671"
         },
-        "foundConfigPath" : "/tmp/viash_hub_repo56292816241811341/target/nextflow/common/check_dataset_schema/.config.vsh.yaml",
+        "foundConfigPath" : "/tmp/viash_hub_repo4534812750375089671/target/nextflow/common/check_dataset_schema/.config.vsh.yaml",
         "configInfo" : {
           "functionalityName" : "check_dataset_schema",
           "git_remote" : "https://github.com/openproblems-bio/openproblems-v2",
