@@ -30,7 +30,6 @@ sc_model.train(
   train_size=0.9,
   validation_size=0.1,
   early_stopping_monitor="elbo_validation",
-  accelerator="gpu"
 )
 
 DestVI.setup_anndata(input_spatial)
@@ -39,7 +38,6 @@ st_model.train(
   max_epochs=par['max_epochs_sp'],
   batch_size=min(int(input_spatial.n_obs / 20 + 3), 128),
   plan_kwargs={"min_kl_weight": 3.0, "max_kl_weight": 3},
-  accelerator="gpu"
 )
 input_spatial.obsm["proportions_pred"] = st_model.get_proportions().to_numpy()
 
