@@ -26,5 +26,5 @@ arguments:
 test_resources:
   - type: python_script
     path: /common/component_tests/run_and_check_output.py
-  - path: /resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas
-    dest: resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas
+  - path: /resources_test/common/cxg_mouse_pancreas_atlas
+    dest: resources_test/common/cxg_mouse_pancreas_atlas

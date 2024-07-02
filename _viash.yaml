@@ -13,10 +13,10 @@ info:
   test_resources:
     - type: s3
       path: s3://openproblems-data/resources_test/common/
-      dest: test_resources
+      dest: resources_test/common
     - type: s3
       path: s3://openproblems-data/resources_test/spatial_decomposition/
-      dest: test_resources
+      dest: resources_test/spatial_decomposition
 
 version: dev
 
