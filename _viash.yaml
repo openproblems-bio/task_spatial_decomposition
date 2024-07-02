@@ -8,7 +8,7 @@ keywords: [single-cell, openproblems, benchmark, spatial decomposition]
 links:
   issue_tracker: https://github.com/openproblems-bio/task_spatial_decomposition/issues
   repository: https://github.com/openproblems-bio/task_spatial_decomposition
-  docker_registry: ghcr.io/openproblems-bio
+  docker_registry: ghcr.io
 info:
   test_resources:
     - type: s3
@@ -18,6 +18,7 @@ info:
       path: s3://openproblems-data/resources_test/spatial_decomposition/
       dest: resources_test/spatial_decomposition
 
+organisation: openproblems-bio
 version: dev
 
 config_mods: |
