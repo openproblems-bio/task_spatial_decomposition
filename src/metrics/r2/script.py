@@ -8,7 +8,7 @@ par = {
   'output': 'score.h5ad'
 }
 meta = {
-  'functionality_name': 'r2'
+  'name': 'r2'
 }
 ## VIASH END
 

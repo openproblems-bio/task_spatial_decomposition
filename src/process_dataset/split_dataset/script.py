@@ -4,13 +4,13 @@ import numpy as np
 
 ## VIASH START
 par = {
-    "input": "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/dataset_simulated.h5ad",
+    "input": "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/simulated_dataset.h5ad",
     "output_spatial_masked": "spatial_masked.h5ad",
     "output_single_cell": "single_cell_ref.h5ad",
     "output_solution": "solution.h5ad",
 }
 meta = {
-    "functionality_name": "split_dataset",
+    "name": "split_dataset",
     "resources_dir": "src/process_dataset/split_dataset",
     "config": "target/nextflow/process_dataset/split_dataset/.config.vsh.yaml"
 }
@@ -22,7 +22,7 @@ from subset_anndata import read_config_slots_info, subset_anndata
 print(">> Load dataset", flush=True)
 adata = ad.read_h5ad(par["input"])
 
-# TO DO: Non-integer values in the counts layer are detected as un-normalized data by some methods, thereby causing them to fail.
+# Non-integer values in the counts layer are detected as un-normalized data by some methods, thereby causing them to fail. Using floor() function to avoid this.
 adata.layers['counts'] = adata.layers['counts'].floor()
 
 print(">> Figuring out which data needs to be copied to which output file", flush=True)

@@ -21,7 +21,7 @@ par = {
   'max_epochs_st': 5000
 }
 meta = {
-  'functionality_name': 'cell2location'
+  'name': 'cell2location'
 }
 ## VIASH END
 
@@ -144,7 +144,7 @@ output = ad.AnnData(
   uns={
     'cell_type_names': input_spatial.uns['cell_type_names'],
     'dataset_id': input_spatial.uns['dataset_id'],
-    'method_id': meta['functionality_name']
+    'method_id': meta['name']
   }
 )
 

@@ -63,18 +63,18 @@ workflow run_wf {
       // use the 'filter' argument to only run a method on the normalisation the component is asking for
       filter: { id, state, comp ->
         def norm = state.dataset_uns.normalization_id
-        def pref = comp.config.functionality.info.preferred_normalization
+        def pref = comp.config.info.preferred_normalization
         // if the preferred normalisation is none at all,
         // we can pass whichever dataset we want
         def norm_check = (norm == "log_cp10k" && pref == "counts") || norm == pref
-        def method_check = !state.method_ids || state.method_ids.contains(comp.config.functionality.name)
+        def method_check = !state.method_ids || state.method_ids.contains(comp.config.name)
 
         method_check && norm_check
       },
       
       // define a new 'id' by appending the method name to the dataset id
       id: { id, state, comp ->
-        id + "." + comp.config.functionality.name
+        id + "." + comp.config.name
       },
 
       // use 'fromState' to fetch the arguments the component requires from the overall state
@@ -83,7 +83,7 @@ workflow run_wf {
           input_single_cell: state.input_single_cell, 
           input_spatial_masked: state.input_spatial_masked
         ]
-        if (comp.config.functionality.info.type == "control_method") {
+        if (comp.config.info.type == "control_method") {
           new_args.input_solution = state.input_solution
         }
         new_args
@@ -92,7 +92,7 @@ workflow run_wf {
       // use 'toState' to publish that component's outputs to the overall state
       toState: { id, output, state, comp ->
         state + [
-          method_id: comp.config.functionality.name,
+          method_id: comp.config.name,
           method_output: output.output
         ]
       }
@@ -102,7 +102,7 @@ workflow run_wf {
     | runEach(
       components: metrics,
       id: { id, state, comp ->
-        id + "." + comp.config.functionality.name
+        id + "." + comp.config.name
       },
       // use 'fromState' to fetch the arguments the component requires from the overall state
       fromState: { id, state, comp ->
@@ -114,7 +114,7 @@ workflow run_wf {
       // use 'toState' to publish that component's outputs to the overall state
       toState: { id, output, state, comp ->
         state + [
-          metric_id: comp.config.functionality.name,
+          metric_id: comp.config.name,
           metric_output: output.output
         ]
       }
@@ -127,6 +127,12 @@ workflow run_wf {
 
   // extract the dataset metadata
   dataset_meta_ch = dataset_ch
+
+    // only keep one of the normalization methods
+    | filter{ id, state ->
+      state.dataset_uns.normalization_id == "log_cp10k"
+    }
+
     | joinStates { ids, states ->
       // store the dataset metadata in a file
       def dataset_uns = states.collect{state ->

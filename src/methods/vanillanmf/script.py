@@ -11,7 +11,7 @@ par = {
   'max_iter': 4000
 }
 meta = {
-  'functionality_name': 'vanillanmf'
+  'name': 'vanillanmf'
 }
 ## VIASH END
 
@@ -64,7 +64,7 @@ output = ad.AnnData(
   uns={
     'cell_type_names': input_spatial.uns['cell_type_names'],
     'dataset_id': input_spatial.uns['dataset_id'],
-    'method_id': meta['functionality_name']
+    'method_id': meta['name']
   },
   obsm={
     'coordinates': input_spatial.obsm['coordinates'],

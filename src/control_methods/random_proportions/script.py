@@ -9,7 +9,7 @@ par = {
   'output': 'output.h5ad'
 }
 meta = {
-  'functionality_name': 'random_proportions'
+  'name': 'random_proportions'
 }
 ## VIASH END
 
@@ -29,7 +29,7 @@ output = ad.AnnData(
   uns={
     'cell_type_names': input_spatial_masked.uns['cell_type_names'],
     'dataset_id': input_spatial_masked.uns['dataset_id'],
-    'method_id': meta['functionality_name']
+    'method_id': meta['name']
   },
   obsm={
     'coordinates': input_spatial_masked.obsm['coordinates'],

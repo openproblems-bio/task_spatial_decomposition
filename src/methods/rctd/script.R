@@ -11,7 +11,7 @@ par <- list(
   fc_cutoff_reg = 0.75
 )
 meta <- list(
-  functionality_name = "rctd", 
+  name = "rctd", 
   cpus = 1
 )
 ## VIASH END
@@ -81,7 +81,7 @@ output <- anndata::AnnData(
   uns = list(
     cell_type_names = input_spatial$uns['cell_type_names'],
     dataset_id = input_spatial$uns[["dataset_id"]],
-    method_id = meta[["functionality_name"]]
+    method_id = meta[["name"]]
   ),
   obsm = list(
     coordinates = coordinates,

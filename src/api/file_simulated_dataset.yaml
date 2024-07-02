@@ -1,5 +1,5 @@
 type: file
-example: "resources_test/common/cxg_mouse_pancreas_atlas/dataset.h5ad"
+example: "resources_test/cxg_mouse_pancreas_atlas/simulated_dataset.h5ad"
 info:
   label: "Common Dataset"
   summary: A subset of the common dataset.
@@ -31,6 +31,14 @@ info:
       - type: double
         name: X_pca
         description: The resulting PCA embedding.
+        required: true
+      - type: double
+        name: coordinates
+        description: XY coordinates for each spot.
+        required: false
+      - type: double
+        name: proportions_true
+        description: True cell type proportions for each spot
         required: false
     uns:
       - type: string
