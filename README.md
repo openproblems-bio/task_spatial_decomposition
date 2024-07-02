@@ -10,7 +10,7 @@ Estimation of cell type proportions per spot in 2D space from spatial
 transcriptomic data coupled with corresponding single-cell data
 
 Path to source:
-[`src`](https://github.com/openproblems-bio/task-spatial-decomposition/tree/main/src)
+[`src`](https://github.com/openproblems-bio/task_spatial_decomposition/src)
 
 ## Motivation
 
@@ -83,7 +83,7 @@ flowchart LR
 A subset of the common dataset.
 
 Example file:
-`resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/dataset_simulated.h5ad`
+`resources_test/common/cxg_mouse_pancreas_atlas/dataset.h5ad`
 
 Format:
 
@@ -92,7 +92,7 @@ Format:
     AnnData object
      obs: 'cell_type', 'batch'
      var: 'hvg', 'hvg_score'
-     obsm: 'X_pca', 'coordinates', 'proportions_true'
+     obsm: 'X_pca'
      layers: 'counts'
      uns: 'cell_type_names', 'dataset_id', 'dataset_name', 'dataset_url', 'dataset_reference', 'dataset_summary', 'dataset_description', 'dataset_organism'
 
@@ -108,9 +108,7 @@ Slot description:
 | `obs["batch"]`               | `string`  | A batch identifier. This label is very context-dependent and may be a combination of the tissue, assay, donor, etc. |
 | `var["hvg"]`                 | `boolean` | Whether or not the feature is considered to be a ‘highly variable gene’.                                            |
 | `var["hvg_score"]`           | `double`  | A ranking of the features by hvg.                                                                                   |
-| `obsm["X_pca"]`              | `double`  | The resulting PCA embedding.                                                                                        |
-| `obsm["coordinates"]`        | `double`  | (*Optional*) XY coordinates for each spot.                                                                          |
-| `obsm["proportions_true"]`   | `double`  | (*Optional*) True cell type proportions for each spot.                                                              |
+| `obsm["X_pca"]`              | `double`  | (*Optional*) The resulting PCA embedding.                                                                           |
 | `layers["counts"]`           | `integer` | Raw counts.                                                                                                         |
 | `uns["cell_type_names"]`     | `string`  | (*Optional*) Cell type names corresponding to values in `cell_type`.                                                |
 | `uns["dataset_id"]`          | `string`  | A unique identifier for the dataset.                                                                                |
