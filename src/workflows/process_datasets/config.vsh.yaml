@@ -1,0 +1,48 @@
+namespace: "workflows"
+name: "process_datasets"
+argument_groups:
+  - name: Inputs
+    arguments:
+      - name: "--input"
+        __merge__: "/src/api/file_common_dataset.yaml"
+        required: true
+        direction: input
+      - name: "--alpha"
+        type: double
+        required: false
+        direction: input
+  - name: Outputs
+    arguments:
+      - name: "--output_single_cell"
+        __merge__: /src/api/file_single_cell.yaml
+        required: true
+        direction: output
+      - name: "--output_spatial_masked"
+        __merge__: /src/api/file_spatial_masked.yaml
+        required: true
+        direction: output
+      - name: "--output_solution"
+        __merge__: /src/api/file_solution.yaml
+        required: true
+        direction: output
+      - name: "--simulated_data"
+        type: file
+        required: false
+        direction: output
+resources:
+  - type: nextflow_script
+    path: main.nf
+    entrypoint: run_wf
+  - path: /common/nextflow_helpers/helper.nf
+dependencies:
+  - name: common/check_dataset_schema
+    repository: openproblems_v2
+  - name: process_dataset/dataset_simulator
+  - name: process_dataset/split_dataset
+repositories:
+  - name: openproblems_v2
+    type: github
+    repo: openproblems-bio/openproblems-v2
+    tag: main_build
+runners:
+  - type: nextflow

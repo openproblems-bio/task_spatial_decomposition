@@ -1,0 +1,266 @@
+name: "seurat"
+namespace: "methods"
+version: "build_main"
+argument_groups:
+- name: "Arguments"
+  arguments:
+  - type: "file"
+    name: "--input_single_cell"
+    info:
+      label: "Single cell data"
+      summary: "The single-cell data file used as reference for the spatial data"
+      slots:
+        layers:
+        - type: "integer"
+          name: "counts"
+          description: "Raw counts"
+          required: true
+        obs:
+        - type: "string"
+          name: "cell_type"
+          description: "Cell type label IDs"
+          required: true
+        - type: "string"
+          name: "batch"
+          description: "A batch identifier. This label is very context-dependent and\
+            \ may be a combination of the tissue, assay, donor, etc."
+          required: false
+        uns:
+        - type: "string"
+          name: "cell_type_names"
+          description: "Cell type names corresponding to values in `cell_type`"
+          required: true
+        - type: "string"
+          name: "dataset_id"
+          description: "A unique identifier for the dataset"
+          required: true
+    example:
+    - "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/single_cell_ref.h5ad"
+    must_exist: true
+    create_parent: true
+    required: true
+    direction: "input"
+    multiple: false
+    multiple_sep: ";"
+  - type: "file"
+    name: "--input_spatial_masked"
+    info:
+      label: "Spatial masked"
+      summary: "The spatial data file containing transcription profiles for each capture\
+        \ location, without cell-type proportions for each spot."
+      slots:
+        layers:
+        - type: "integer"
+          name: "counts"
+          description: "Raw counts"
+          required: true
+        obsm:
+        - type: "double"
+          name: "coordinates"
+          description: "XY coordinates for each spot"
+          required: true
+        uns:
+        - type: "string"
+          name: "cell_type_names"
+          description: "Cell type names corresponding to columns of `proportions_pred`\
+            \ in output"
+          required: true
+        - type: "string"
+          name: "dataset_id"
+          description: "A unique identifier for the dataset"
+          required: true
+    example:
+    - "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/spatial_masked.h5ad"
+    must_exist: true
+    create_parent: true
+    required: true
+    direction: "input"
+    multiple: false
+    multiple_sep: ";"
+  - type: "file"
+    name: "--output"
+    info:
+      label: "Output"
+      summary: "Spatial data with estimated proportions."
+      description: "Spatial data file with estimated cell type proportions."
+      slots:
+        layers:
+        - type: "integer"
+          name: "counts"
+          description: "Raw counts"
+          required: true
+        obsm:
+        - type: "double"
+          name: "coordinates"
+          description: "XY coordinates for each spot"
+          required: true
+        - type: "double"
+          name: "proportions_pred"
+          description: "Estimated cell type proportions for each spot"
+          required: true
+        uns:
+        - type: "string"
+          name: "cell_type_names"
+          description: "Cell type names corresponding to columns of `proportions`"
+          required: true
+        - type: "string"
+          name: "dataset_id"
+          description: "A unique identifier for the dataset"
+          required: true
+        - type: "string"
+          name: "method_id"
+          description: "A unique identifier for the method"
+          required: true
+    example:
+    - "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/output.h5ad"
+    must_exist: true
+    create_parent: true
+    required: true
+    direction: "output"
+    multiple: false
+    multiple_sep: ";"
+  - type: "integer"
+    name: "--n_pcs"
+    description: "Number of principal components."
+    info: null
+    default:
+    - 30
+    required: false
+    direction: "input"
+    multiple: false
+    multiple_sep: ";"
+  - type: "integer"
+    name: "--sctransform_n_cells"
+    description: "Number of cells sampled to build NB regression."
+    info: null
+    default:
+    - 5000
+    required: false
+    direction: "input"
+    multiple: false
+    multiple_sep: ";"
+resources:
+- type: "r_script"
+  path: "script.R"
+  is_executable: true
+test_resources:
+- type: "python_script"
+  path: "check_method_config.py"
+  is_executable: true
+- type: "python_script"
+  path: "run_and_check_output.py"
+  is_executable: true
+- type: "file"
+  path: "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas"
+  dest: "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas"
+- type: "file"
+  path: "library.bib"
+info:
+  label: "Seurat"
+  summary: "Seurat method that is based on Canonical Correlation Analysis (CCA)."
+  description: "This method applies the 'anchor'-based integration workflow introduced\
+    \ in Seurat v3, that enables the probabilistic transfer of annotations from a\
+    \ reference to a query set. First, mutual nearest neighbors (anchors) are identified\
+    \ from the reference scRNA-seq and query spatial datasets. Then, annotations are\
+    \ transfered from the single cell reference data to the sptial data along with\
+    \ prediction scores for each spot.\n"
+  preferred_normalization: "counts"
+  reference: "stuart2019comprehensive"
+  documentation_url: "https://satijalab.org/seurat/articles/spatial_vignette"
+  repository_url: "https://github.com/satijalab/seurat"
+  type: "method"
+  type_info:
+    label: "Method"
+    summary: "A spatial composition method."
+    description: "Method to estimate cell type proportions from spatial and single\
+      \ cell data"
+status: "enabled"
+license: "MIT"
+links:
+  repository: "https://github.com/openproblems-bio/task_spatial_decomposition"
+  docker_registry: "ghcr.io"
+runners:
+- type: "executable"
+  id: "executable"
+  docker_setup_strategy: "ifneedbepullelsecachedbuild"
+- type: "nextflow"
+  id: "nextflow"
+  directives:
+    label:
+    - "midtime"
+    - "highmem"
+    - "midcpu"
+    tag: "$id"
+  auto:
+    simplifyInput: true
+    simplifyOutput: false
+    transcript: false
+    publish: false
+  config:
+    labels:
+      lowmem: "memory = 20.Gb"
+      midmem: "memory = 50.Gb"
+      highmem: "memory = 100.Gb"
+      lowcpu: "cpus = 5"
+      midcpu: "cpus = 15"
+      highcpu: "cpus = 30"
+      lowtime: "time = 1.h"
+      midtime: "time = 4.h"
+      hightime: "time = 8.h"
+      veryhightime: "time = 24.h"
+  debug: false
+  container: "docker"
+engines:
+- type: "docker"
+  id: "docker"
+  image: "ghcr.io/openproblems-bio/base_r:1.0.4"
+  namespace_separator: "/"
+  setup:
+  - type: "r"
+    cran:
+    - "Matrix"
+    - "Seurat"
+    bioc_force_install: false
+  entrypoint: []
+  cmd: null
+build_info:
+  config: "src/methods/seurat/config.vsh.yaml"
+  runner: "nextflow"
+  engine: "docker"
+  output: "target/nextflow/methods/seurat"
+  executable: "target/nextflow/methods/seurat/main.nf"
+  viash_version: "0.9.0-RC6"
+  git_commit: "e2acdec8a5bc40e9c015e99892983c62a2e591fe"
+  git_remote: "https://github.com/openproblems-bio/task_spatial_decomposition"
+package_config:
+  name: "task_spatial_decomposition"
+  version: "build_main"
+  description: "An OpenProblems benchmark task for spatial decomposition.\n"
+  info:
+    test_resources:
+    - type: "s3"
+      path: "s3://openproblems-data/resources_test/common/"
+      dest: "resources_test/common"
+    - type: "s3"
+      path: "s3://openproblems-data/resources_test/spatial_decomposition/"
+      dest: "resources_test/spatial_decomposition"
+  viash_version: "0.9.0-RC6"
+  source: "src"
+  target: "target"
+  config_mods:
+  - ".runners[.type == \"nextflow\"].config.labels := { lowmem : \"memory = 20.Gb\"\
+    , midmem : \"memory = 50.Gb\", highmem : \"memory = 100.Gb\", lowcpu : \"cpus\
+    \ = 5\", midcpu : \"cpus = 15\", highcpu : \"cpus = 30\", lowtime : \"time = 1.h\"\
+    , midtime : \"time = 4.h\", hightime : \"time = 8.h\", veryhightime : \"time =\
+    \ 24.h\" }"
+  keywords:
+  - "single-cell"
+  - "openproblems"
+  - "benchmark"
+  - "spatial decomposition"
+  license: "MIT"
+  organization: "openproblems-bio"
+  links:
+    repository: "https://github.com/openproblems-bio/task_spatial_decomposition"
+    docker_registry: "ghcr.io"
+    issue_tracker: "https://github.com/openproblems-bio/task_spatial_decomposition/issues"
