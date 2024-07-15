@@ -14,10 +14,10 @@ par = {
     "cell_ub": 30,
     "umi_lb": 1000,
     "umi_ub": 5000,
-    "simulated_data": "dataset_simulated.h5ad"
+    "simulated_data": "simulated_dataset.h5ad"
 }
 meta = {
-    "functionality_name": "dataset_simulator",
+    "name": "dataset_simulator",
     "resources_dir": "src/tasks/spatial_decomposition/dataset_simulator",
 }
 ## VIASH END

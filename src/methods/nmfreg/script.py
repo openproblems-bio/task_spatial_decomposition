@@ -13,7 +13,7 @@ par = {
   'n_components': 30
 }
 meta = {
-  'functionality_name': 'nmfreg'
+  'name': 'nmfreg'
 }
 ## VIASH END
 
@@ -78,7 +78,7 @@ output = ad.AnnData(
   uns={
     'cell_type_names': input_spatial.uns['cell_type_names'],
     'dataset_id': input_spatial.uns['dataset_id'],
-    'method_id': meta['functionality_name']
+    'method_id': meta['name']
   },
   obsm={
     'coordinates': input_spatial.obsm['coordinates'],

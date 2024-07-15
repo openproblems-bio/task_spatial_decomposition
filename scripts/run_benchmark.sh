@@ -29,7 +29,7 @@ nextflow run . \
   -entry auto \
   -c common/nextflow_helpers/labels_ci.config \
   --input_states "$DATASETS_DIR/**/state.yaml" \
-  --rename_keys 'input_single_cell:output_single_cell,input_spatial_masked:output_spatial_masked,input_solution:output_solution' \
+  --rename_keys 'input_single_cell:output_single_cell;input_spatial_masked:output_spatial_masked;input_solution:output_solution' \
   --settings '{"output_scores": "scores.yaml", "output_dataset_info": "dataset_info.yaml", "output_method_configs": "method_configs.yaml", "output_metric_configs": "metric_configs.yaml", "output_task_info": "task_info.yaml"}' \
   --publish_dir "$OUTPUT_DIR" \
   --output_state "state.yaml"

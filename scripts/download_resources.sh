@@ -5,5 +5,6 @@ directories=("common" "spatial_decomposition")
 for dir in ${directories[@]}; do 
     common/sync_resources/sync_resources \
         --input "s3://openproblems-data/resources_test/$dir/cxg_mouse_pancreas_atlas" \
-        --output "resources_test/$dir/cxg_mouse_pancreas_atlas"
+        --output "resources_test/$dir/cxg_mouse_pancreas_atlas" \
+        --delete
 done

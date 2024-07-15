@@ -13,7 +13,7 @@ par = {
   'n_markers': 100
 }
 meta = {
-  'functionality_name': 'tangram'
+  'name': 'tangram'
 }
 ## VIASH END
 
@@ -78,7 +78,7 @@ output = ad.AnnData(
   uns={
     'cell_type_names': input_spatial.uns['cell_type_names'],
     'dataset_id': input_spatial.uns['dataset_id'],
-    'method_id': meta['functionality_name']
+    'method_id': meta['name']
   }
 )
 output.write_h5ad(par['output'], compression='gzip')
