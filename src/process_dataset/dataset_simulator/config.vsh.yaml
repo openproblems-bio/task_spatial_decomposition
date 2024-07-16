@@ -39,7 +39,7 @@ arguments:
     default: 30
   - name: "--umi_lb"
     type: integer
-    description: Lower bound for number of cells at each spot. Default value is 1000.
+    description: Lower bound for number of UMIs at each spot. Default value is 1000.
     default: 1000
   - name: "--umi_ub"
     type: integer
