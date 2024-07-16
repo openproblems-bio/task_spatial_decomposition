@@ -478,9 +478,9 @@ RUN Rscript -e 'if (!requireNamespace("remotes", quietly = TRUE)) install.packag
   Rscript -e 'remotes::install_cran(c("Matrix", "Seurat"), repos = "https://cran.rstudio.com")'
 
 LABEL org.opencontainers.image.description="Companion container for running component methods seurat"
-LABEL org.opencontainers.image.created="2024-07-15T11:43:15Z"
+LABEL org.opencontainers.image.created="2024-07-16T08:51:41Z"
 LABEL org.opencontainers.image.source="https://github.com/openproblems-bio/task_spatial_decomposition"
-LABEL org.opencontainers.image.revision="e2acdec8a5bc40e9c015e99892983c62a2e591fe"
+LABEL org.opencontainers.image.revision="d9e73107d2accb45037cda16e6d2107f969b0237"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER

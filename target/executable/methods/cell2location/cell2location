@@ -519,9 +519,9 @@ RUN pip install --upgrade pip && \
   pip install --upgrade --no-cache-dir "scvi-tools==1.0.4" "cell2location" "jax==0.4.23" "jaxlib==0.4.23" "scipy<1.13"
 
 LABEL org.opencontainers.image.description="Companion container for running component methods cell2location"
-LABEL org.opencontainers.image.created="2024-07-15T11:43:14Z"
+LABEL org.opencontainers.image.created="2024-07-16T08:51:41Z"
 LABEL org.opencontainers.image.source="https://github.com/openproblems-bio/task_spatial_decomposition"
-LABEL org.opencontainers.image.revision="e2acdec8a5bc40e9c015e99892983c62a2e591fe"
+LABEL org.opencontainers.image.revision="d9e73107d2accb45037cda16e6d2107f969b0237"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER
