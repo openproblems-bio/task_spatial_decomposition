@@ -1,0 +1,32 @@
+__merge__: ../../api/comp_metric.yaml
+
+name: jsd
+info:
+  metrics:
+    - name: jsd
+      label: JSD
+      summary: "JSD measure the similarity between to probability distributions."
+      description: |
+        The Jensen-Shannon Distance, which is the square root of Jensen-Shannon Divergence is a symmetric method for measuring the similarity between two probability distributions. The similarity between the distributions is greater when the Jensen-Shannon distance is closer to zero.
+      documentation_url: https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.jensenshannon.html
+      repository_url: https://github.com/scipy/scipy/
+      min: 0
+      max: 1
+      maximize: false
+
+resources:
+  - type: python_script
+    path: script.py
+
+engines:
+  - type: docker
+    image: ghcr.io/openproblems-bio/base_images/python:1.1.0
+    setup:
+      - type: python
+        packages: [numpy, scipy]
+
+runners:
+  - type: executable
+  - type: nextflow
+    directives:
+      label: [midtime, midmem, midcpu]
