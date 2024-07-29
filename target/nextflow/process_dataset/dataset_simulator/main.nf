@@ -2783,7 +2783,7 @@ meta = [
   "version" : "build_main",
   "argument_groups" : [
     {
-      "name" : "Arguments",
+      "name" : "Input",
       "arguments" : [
         {
           "type" : "file",
@@ -2898,7 +2898,12 @@ meta = [
           "direction" : "input",
           "multiple" : false,
           "multiple_sep" : ";"
-        },
+        }
+      ]
+    },
+    {
+      "name" : "Simulation options",
+      "arguments" : [
         {
           "type" : "double",
           "name" : "--alpha",
@@ -2970,7 +2975,12 @@ meta = [
           "direction" : "input",
           "multiple" : false,
           "multiple_sep" : ";"
-        },
+        }
+      ]
+    },
+    {
+      "name" : "Output",
+      "arguments" : [
         {
           "type" : "file",
           "name" : "--simulated_data",
@@ -3210,7 +3220,7 @@ meta = [
     "engine" : "docker",
     "output" : "target/nextflow/process_dataset/dataset_simulator",
     "viash_version" : "0.9.0-RC6",
-    "git_commit" : "34dbf81153a1869edccae2c1bd0ef84d814cab80",
+    "git_commit" : "3f5442c24f23bc32cf0310e753499d16188d0954",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {

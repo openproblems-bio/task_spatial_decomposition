@@ -473,9 +473,9 @@ RUN pip install --upgrade pip && \
   pip install --upgrade --no-cache-dir "numpy<2.0" "scipy" "scikit-learn"
 
 LABEL org.opencontainers.image.description="Companion container for running component methods vanillanmf"
-LABEL org.opencontainers.image.created="2024-07-29T07:02:15Z"
+LABEL org.opencontainers.image.created="2024-07-29T07:04:31Z"
 LABEL org.opencontainers.image.source="https://github.com/openproblems-bio/task_spatial_decomposition"
-LABEL org.opencontainers.image.revision="34dbf81153a1869edccae2c1bd0ef84d814cab80"
+LABEL org.opencontainers.image.revision="3f5442c24f23bc32cf0310e753499d16188d0954"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER

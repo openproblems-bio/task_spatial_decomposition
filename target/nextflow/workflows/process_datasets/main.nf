@@ -3216,7 +3216,7 @@ meta = [
     "engine" : "native",
     "output" : "target/nextflow/workflows/process_datasets",
     "viash_version" : "0.9.0-RC6",
-    "git_commit" : "34dbf81153a1869edccae2c1bd0ef84d814cab80",
+    "git_commit" : "3f5442c24f23bc32cf0310e753499d16188d0954",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {
