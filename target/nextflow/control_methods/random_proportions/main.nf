@@ -3162,7 +3162,7 @@ meta = [
     "engine" : "docker",
     "output" : "target/nextflow/control_methods/random_proportions",
     "viash_version" : "0.9.0-RC6",
-    "git_commit" : "d9e73107d2accb45037cda16e6d2107f969b0237",
+    "git_commit" : "34dbf81153a1869edccae2c1bd0ef84d814cab80",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {
@@ -3255,7 +3255,6 @@ dep = {
 print('Reading input files', flush=True)
 input_single_cell = ad.read_h5ad(par['input_single_cell'])
 input_spatial_masked = ad.read_h5ad(par['input_spatial_masked'])
-input_solution = ad.read_h5ad(par['input_solution'])
 
 print('Generate predictions', flush=True)
 label_distribution = input_single_cell.obs["cell_type"].value_counts()

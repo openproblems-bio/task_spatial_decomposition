@@ -3082,7 +3082,7 @@ meta = [
     "engine" : "docker",
     "output" : "target/nextflow/methods/nmfreg",
     "viash_version" : "0.9.0-RC6",
-    "git_commit" : "d9e73107d2accb45037cda16e6d2107f969b0237",
+    "git_commit" : "34dbf81153a1869edccae2c1bd0ef84d814cab80",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {

@@ -16,7 +16,6 @@ meta = {
 print('Reading input files', flush=True)
 input_single_cell = ad.read_h5ad(par['input_single_cell'])
 input_spatial_masked = ad.read_h5ad(par['input_spatial_masked'])
-input_solution = ad.read_h5ad(par['input_solution'])
 
 print('Generate predictions', flush=True)
 label_distribution = input_single_cell.obs["cell_type"].value_counts()

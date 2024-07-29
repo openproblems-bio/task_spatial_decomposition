@@ -478,9 +478,9 @@ RUN pip install --upgrade pip && \
   pip install --upgrade --no-cache-dir "scvi-tools"
 
 LABEL org.opencontainers.image.description="Companion container for running component methods stereoscope"
-LABEL org.opencontainers.image.created="2024-07-16T08:51:42Z"
+LABEL org.opencontainers.image.created="2024-07-29T07:02:16Z"
 LABEL org.opencontainers.image.source="https://github.com/openproblems-bio/task_spatial_decomposition"
-LABEL org.opencontainers.image.revision="d9e73107d2accb45037cda16e6d2107f969b0237"
+LABEL org.opencontainers.image.revision="34dbf81153a1869edccae2c1bd0ef84d814cab80"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER

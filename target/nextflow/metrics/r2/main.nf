@@ -3031,7 +3031,7 @@ meta = [
         "description" : "R2, or the “coefficient of determination”, reports the fraction of the true proportion values' variance that can be explained by the predicted proportion values. The best score, and upper bound, is 1.0. There is no fixed lower bound for the metric. The uniform/non-weighted average across all cell types/states is used to summarise performance. By default, cases resulting in a score of NaN (perfect predictions) or -Inf (imperfect predictions) are replaced with 1.0 (perfect predictions) or 0.0 (imperfect predictions) respectively.\n",
         "reference" : "miles2005rsquared",
         "documentation_url" : "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html",
-        "repository_url" : "https://github.com/scikit-learn/scikit-learn/tree/5c4aa5d0d90ba66247d675d4c3fc2fdfba3c39ff",
+        "repository_url" : "https://github.com/scikit-learn/scikit-learn",
         "min" : "-inf",
         "max" : 1,
         "maximize" : true
@@ -3115,7 +3115,7 @@ meta = [
     "engine" : "docker",
     "output" : "target/nextflow/metrics/r2",
     "viash_version" : "0.9.0-RC6",
-    "git_commit" : "d9e73107d2accb45037cda16e6d2107f969b0237",
+    "git_commit" : "34dbf81153a1869edccae2c1bd0ef84d814cab80",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {
