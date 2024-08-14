@@ -3,8 +3,8 @@ __merge__: ../../api/comp_metric.yaml
 name: jsd
 info:
   metrics:
-    - name: jsd
-      label: JSD
+    - name: jensen_shannon_distance
+      label: Jensen-Shannon Distance
       summary: "JSD measure the similarity between to probability distributions."
       description: |
         The Jensen-Shannon Distance, which is the square root of Jensen-Shannon Divergence is a symmetric method for measuring the similarity between two probability distributions. The similarity between the distributions is greater when the Jensen-Shannon distance is closer to zero.
