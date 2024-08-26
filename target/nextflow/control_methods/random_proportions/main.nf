@@ -3162,7 +3162,7 @@ meta = [
     "engine" : "docker",
     "output" : "target/nextflow/control_methods/random_proportions",
     "viash_version" : "0.9.0-RC6",
-    "git_commit" : "3f5442c24f23bc32cf0310e753499d16188d0954",
+    "git_commit" : "6b25bf9ea396f0eb843e9e3e7f6d39bda46a24c1",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {

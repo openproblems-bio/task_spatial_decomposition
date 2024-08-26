@@ -495,9 +495,9 @@ RUN pip install --upgrade pip && \
   pip install --upgrade --no-cache-dir "numpy<2.0" "scanpy"
 
 LABEL org.opencontainers.image.description="Companion container for running component process_dataset dataset_simulator"
-LABEL org.opencontainers.image.created="2024-07-29T07:04:31Z"
+LABEL org.opencontainers.image.created="2024-08-26T09:12:15Z"
 LABEL org.opencontainers.image.source="https://github.com/openproblems-bio/task_spatial_decomposition"
-LABEL org.opencontainers.image.revision="3f5442c24f23bc32cf0310e753499d16188d0954"
+LABEL org.opencontainers.image.revision="6b25bf9ea396f0eb843e9e3e7f6d39bda46a24c1"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER
