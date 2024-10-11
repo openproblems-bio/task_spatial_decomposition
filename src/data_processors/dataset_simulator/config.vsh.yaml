@@ -1,9 +1,9 @@
-namespace: process_dataset
+namespace: data_proessors
 name: dataset_simulator
 info:
-  type: process_dataset
+  type: data_proessors
   type_info:
-    label: Dataset simulator
+    label: Dataset Simulator
     summary: Simulate cell aggregates from single-cell data.
     description: |
       The dataset simulator creates cell-aggregates from the single-cell dataset by sampling from a Dirichlet distribution. The simulated data consists of the the spatial expression matrix, the XY coordinates of the spots, the cell-type proportions in each spot, and the reference single-cell data.
@@ -14,6 +14,7 @@ info:
         alpha: 5
       alpha_0_5:
         alpha: 0.5
+
 argument_groups:
   - name: Input
     arguments:
@@ -57,10 +58,14 @@ argument_groups:
         description: Simulated dataset
         required: true
         __merge__: ../../api/file_simulated_dataset.yaml
+
 resources:
   - type: python_script
     path: script.py
+
 test_resources:
+  - type: python_script
+    path: /common/component_tests/check_config.py
   - type: python_script
     path: /common/component_tests/run_and_check_output.py
   - path: /resources_test/common/cxg_mouse_pancreas_atlas
@@ -68,7 +73,7 @@ test_resources:
 
 engines:
   - type: docker
-    image: ghcr.io/openproblems-bio/base_python:1.0.4
+    image: openproblems/base_python:1.0.0
     setup:
       - type: python
         packages: 

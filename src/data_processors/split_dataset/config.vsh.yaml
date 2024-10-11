@@ -1,12 +1,13 @@
-namespace: process_dataset
+namespace: data_processors
 name: split_dataset
 info:
-  type: process_dataset
+  type: data_processors
   type_info:
-    label: Data processor
+    label: Split Dataset
     summary: A spatial decomposition dataset processor.
     description: |
       Prepare a common dataset for the spatial_decomposition task.
+
 arguments:
   - name: "--input"
     __merge__: ../../api/file_simulated_dataset.yaml
@@ -28,9 +29,11 @@ arguments:
 resources:
     - type: python_script
       path: script.py
-    - path: /common/helper_functions/subset_anndata.py
+    - path: /common/helper_functions/subset_h5ad_by_format.py
 
 test_resources:
+  - type: python_script
+    path: /common/component_tests/check_config.py
   - type: python_script
     path: /common/component_tests/run_and_check_output.py
   - path: /resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas
@@ -38,7 +41,7 @@ test_resources:
 
 engines:
   - type: docker
-    image: ghcr.io/openproblems-bio/base_python:1.0.4
+    image: openproblems/base_python:1.0.0
 
 runners:
   - type: executable
