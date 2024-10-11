@@ -30,7 +30,7 @@ output = ad.AnnData(
     'method_id': meta['name']
   },
   obsm={
-    'coordinates': input_spatial_masked.obsm['coordinates'],
+    'spatial': input_spatial_masked.obsm['spatial'],
     'proportions_pred': input_spatial_masked.obsm['proportions_pred']
   },
   layers={

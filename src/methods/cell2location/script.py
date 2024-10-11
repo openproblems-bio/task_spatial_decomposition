@@ -135,7 +135,7 @@ output = ad.AnnData(
   obs=input_spatial.obs[[]],
   var=input_spatial.var[[]],
   obsm={
-    'coordinates': input_spatial.obsm['coordinates'],
+    'spatial': input_spatial.obsm['spatial'],
     'proportions_pred': input_spatial.obsm['proportions_pred']
   },
   layers={

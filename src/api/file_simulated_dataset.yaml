@@ -33,7 +33,7 @@ info:
         description: The resulting PCA embedding.
         required: true
       - type: double
-        name: coordinates
+        name: spatial
         description: XY coordinates for each spot.
         required: false
       - type: double

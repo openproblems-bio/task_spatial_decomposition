@@ -64,7 +64,7 @@ def generate_synthetic_dataset(
     AnnData with:
         - `adata_merged.X`: simulated counts (aggregate of sc dataset).
         - `adata_merged.obsm["proportions_true"]`: true proportion values.
-        - `adata_merged.obsm["coordinates"]`: coordinates of each spot.
+        - `adata_merged.obsm["spatial"]`: spatial of each spot.
         - `adata_merged.obsm["n_cells"]`: number of cells from each type at every location.
 
     """
@@ -146,7 +146,7 @@ def generate_synthetic_dataset(
     )
 
     # fake coordinates
-    adata_spatial.obsm["coordinates"] = rng.random((adata_spatial.shape[0], 2))
+    adata_spatial.obsm["spatial"] = rng.random((adata_spatial.shape[0], 2))
     adata_spatial.obsm["proportions_true"] = sp_p
     adata_spatial.obs["n_cells"] = n_cells
     adata_spatial.obsm["n_cells"] = sp_c

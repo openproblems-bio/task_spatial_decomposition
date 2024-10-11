@@ -73,7 +73,7 @@ predictions <- LayerData(predictions_assay, layer = "data")
 predictions <- predictions[!(rownames(predictions) == "max"), ]
 predictions <- t(predictions)
 
-sp_coords <- as.data.frame(input_spatial$obsm['coordinates'])
+sp_coords <- as.data.frame(input_spatial$obsm['spatial'])
 colnames(sp_coords) <- c("x", "y")
 rownames(sp_coords) <- rownames(input_spatial)
 sp_coords <- as.matrix(sp_coords)
@@ -89,7 +89,7 @@ output <- anndata::AnnData(
     method_id = meta[["name"]]
   ),
   obsm = list(
-    coordinates = sp_coords,
+    spatial = sp_coords,
     proportions_pred = predictions
   ),
   layers = list(

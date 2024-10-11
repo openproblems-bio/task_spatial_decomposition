@@ -11,7 +11,7 @@ info:
         required: true
     obsm:
       - type: double
-        name: coordinates
+        name: spatial
         description: XY coordinates for each spot
         required: true
       - type: double
