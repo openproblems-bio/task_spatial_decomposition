@@ -1,5 +1,5 @@
-name: "run_benchmark"
-namespace: "workflows"
+name: run_benchmark
+namespace: workflows
 argument_groups:
   - name: Inputs
     arguments:
@@ -47,8 +47,6 @@ resources:
   - type: nextflow_script
     path: main.nf
     entrypoint: run_wf
-  - type: file
-    path: "../../api/task_info.yaml"
 dependencies:
   - name: common/check_dataset_schema
     repository: openproblems_v2

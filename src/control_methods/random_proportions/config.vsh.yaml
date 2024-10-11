@@ -1,11 +1,11 @@
 __merge__: ../../api/comp_control_method.yaml
 
 name: random_proportions
+label: Random Proportions
+summary: "Negative control method that randomly assigns celltype proportions from a Dirichlet distribution."
+description: |
+  A negative control method with random assignment of predicted celltype proportions from a Dirichlet distribution.
 info:
-  label: Random Proportions
-  summary: "Negative control method that randomly assigns celltype proportions from a Dirichlet distribution."
-  description: |
-    A negative control method with random assignment of predicted celltype proportions from a Dirichlet distribution.
   preferred_normalization: counts
 
 resources:
@@ -14,7 +14,7 @@ resources:
 
 engines:
   - type: docker
-    image: ghcr.io/openproblems-bio/base_python:1.0.4
+    image: openproblems/base_python:1.0.0
     setup:
       - type: python
         packages: numpy
