@@ -1,9 +1,10 @@
 type: file
 example: "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/score.h5ad"
+label: "Score"
+summary: Metric score file.
 info:
-  label: "Score"
-  summary: Metric score file.
-  slots:
+  format:
+    type: h5ad 
     uns:
       - type: string
         name: dataset_id
