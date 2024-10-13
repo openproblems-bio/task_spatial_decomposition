@@ -8,9 +8,11 @@ info:
       summary: "Jensen-Shannon Distance measure the similarity between to probability distributions."
       description: |
         The Jensen-Shannon Distance, which is the square root of Jensen-Shannon Divergence is a symmetric method for measuring the similarity between two probability distributions. The similarity between the distributions is greater when the Jensen-Shannon distance is closer to zero.
-      reference: 10.1109/18.61115
-      documentation_url: https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.jensenshannon.html
-      repository_url: https://github.com/scipy/scipy/
+      references: 
+        doi: 10.1109/18.61115
+      links:
+        documentation: https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.jensenshannon.html
+        repository: https://github.com/scipy/scipy/
       min: 0
       max: 1
       maximize: false
