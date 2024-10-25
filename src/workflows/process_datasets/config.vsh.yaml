@@ -35,14 +35,9 @@ resources:
     entrypoint: run_wf
   - path: /common/nextflow_helpers/helper.nf
 dependencies:
-  - name: common/check_dataset_schema
-    repository: openproblems_v2
+  - name: schema/verify_data_structure
+    repository: core
   - name: process_dataset/dataset_simulator
   - name: process_dataset/split_dataset
-repositories:
-  - name: openproblems_v2
-    type: github
-    repo: openproblems-bio/openproblems-v2
-    tag: main_build
 runners:
   - type: nextflow

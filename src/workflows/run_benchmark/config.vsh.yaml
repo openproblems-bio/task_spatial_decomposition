@@ -48,10 +48,8 @@ resources:
     path: main.nf
     entrypoint: run_wf
 dependencies:
-  - name: common/check_dataset_schema
-    repository: openproblems_v2
-  - name: common/extract_metadata
-    repository: openproblems_v2
+  - name: h5ad/extract_uns_metadata
+    repository: core
   - name: control_methods/random_proportions
   - name: control_methods/true_proportions
   - name: methods/cell2location
