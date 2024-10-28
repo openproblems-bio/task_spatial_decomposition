@@ -21,7 +21,7 @@ nextflow run . \
   -c common/nextflow_helpers/labels_ci.config \
   --input_states "$RAW_DATA/cxg_mouse_pancreas_atlas/state.yaml" \
   --rename_keys 'input:output_dataset' \
-  --settings '{"output_spatial_masked": "$id/spatial_masked.h5ad", "output_single_cell": "$id/single_cell_ref.h5ad", "output_solution": "$id/solution.h5ad", "alpha": 1.0, "simulated_data": "$id/simulated_dataset.h5ad"}' \
+  --settings '{"output_spatial_masked": "$id/spatial_masked.h5ad", "output_single_cell": "$id/single_cell_ref.h5ad", "output_solution": "$id/solution.h5ad", "alpha": 1.0, "output_simulated_data": "$id/simulated_dataset.h5ad"}' \
   --publish_dir "$DATASET_DIR" \
   --output_state '$id/state.yaml'
 
@@ -38,6 +38,6 @@ viash run src/metrics/r2/config.vsh.yaml -- \
   --output $DATASET_DIR/cxg_mouse_pancreas_atlas/score.h5ad
 
 # only run this if you have access to the openproblems-data bucket
-# aws s3 sync --profile op \
-#   "$DATASET_DIR" s3://openproblems-data/resources_test/task_spatial_decomposition \
-#   --delete --dryrun
+aws s3 sync --profile op \
+  "$DATASET_DIR" s3://openproblems-data/resources_test/task_spatial_decomposition \
+  --delete --dryrun

@@ -13,7 +13,7 @@ cat > /tmp/params.yaml << 'HERE'
   - id: spatial_decomposition_process_datasets_openproblems_v1
     input_states: s3://openproblems-data/resources/datasets/openproblems_v1/**/log_cp10k/state.yaml
 
-settings: '{"output_spatial_masked": "$id/spatial_masked.h5ad", "output_single_cell": "$id/single_cell_ref.h5ad", "output_solution": "$id/solution.h5ad", "alpha": 1.0, "simulated_data": "$id/dataset_simulated.h5ad"}'
+settings: '{"output_spatial_masked": "$id/spatial_masked.h5ad", "output_single_cell": "$id/single_cell_ref.h5ad", "output_solution": "$id/solution.h5ad", "alpha": 1.0, "output_simulated_data": "$id/simulated_dataset.h5ad"}'
 rename_keys: 'input:output_dataset'
 output_state: "$id/state.yaml"
 publish_dir: s3://openproblems-data/resources/task_spatial_decomposition/datasets
