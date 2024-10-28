@@ -5,7 +5,7 @@ info:
     label: Data processor
     summary: A spatial decomposition dataset processor.
     description: |
-      Prepare a common dataset for the spatial_decomposition task.
+      Prepare a common dataset for the task_spatial_decomposition task.
 arguments:
   - name: "--input"
     __merge__: file_common_dataset.yaml

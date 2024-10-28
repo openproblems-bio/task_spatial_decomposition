@@ -18,7 +18,7 @@ par = {
 }
 meta = {
     "name": "dataset_simulator",
-    "resources_dir": "src/tasks/spatial_decomposition/dataset_simulator",
+    "resources_dir": "src/tasks/task_spatial_decomposition/dataset_simulator",
 }
 ## VIASH END
 
@@ -200,9 +200,9 @@ adata_merged.X = None
 # In this case, the error is raised when there are NA values in .obs columns with dtype object (boolean).
 # The resulting anndata object cannot be written to a file.
 # This conversion is handled in later versions of anndata (0.10)
-for col in adata_merged.obs:
-    if adata_merged.obs[col].dtype == 'object':
-        adata_merged.obs[col] = adata_merged.obs[col].astype('category')
+# for col in adata_merged.obs:
+#     if adata_merged.obs[col].dtype == 'object':
+#         adata_merged.obs[col] = adata_merged.obs[col].astype('category')
 
 print("Writing output to file")
 adata_merged.write_h5ad(par["simulated_data"])

@@ -1,5 +1,5 @@
 type: file
-example: "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/solution.h5ad"
+example: "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/solution.h5ad"
 label: Solution
 summary: "The spatial data file containing transcription profiles for each capture location, with true cell-type proportions for each spot / capture location."
 info:

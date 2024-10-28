@@ -27,8 +27,8 @@ info:
       path: s3://openproblems-data/resources_test/common/cxg_mouse_pancreas_atlas/
       dest: resources_test/common/cxg_mouse_pancreas_atlas
     - type: s3
-      path: s3://openproblems-data/resources_test/spatial_decomposition/
-      dest: resources_test/spatial_decomposition
+      path: s3://openproblems-data/resources_test/task_spatial_decomposition/
+      dest: resources_test/task_spatial_decomposition
 
 authors: 
   - name: "Giovanni Palla"
