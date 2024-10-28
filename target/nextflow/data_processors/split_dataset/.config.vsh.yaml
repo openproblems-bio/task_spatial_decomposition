@@ -1,0 +1,393 @@
+name: "split_dataset"
+namespace: "data_processors"
+version: "build_main"
+argument_groups:
+- name: "Arguments"
+  arguments:
+  - type: "file"
+    name: "--input"
+    label: "Common Dataset"
+    summary: "A subset of the common dataset."
+    info:
+      format:
+        type: "h5ad"
+        layers:
+        - type: "integer"
+          name: "counts"
+          description: "Raw counts."
+          required: true
+        obs:
+        - type: "string"
+          name: "cell_type"
+          description: "Cell type label IDs."
+          required: true
+        - type: "string"
+          name: "batch"
+          description: "A batch identifier. This label is very context-dependent and\
+            \ may be a combination of the tissue, assay, donor, etc."
+          required: true
+        var:
+        - type: "boolean"
+          name: "hvg"
+          description: "Whether or not the feature is considered to be a 'highly variable\
+            \ gene'"
+          required: true
+        - type: "double"
+          name: "hvg_score"
+          description: "A ranking of the features by hvg."
+          required: true
+        obsm:
+        - type: "double"
+          name: "X_pca"
+          description: "The resulting PCA embedding."
+          required: true
+        - type: "double"
+          name: "spatial"
+          description: "XY coordinates for each spot."
+          required: false
+        - type: "double"
+          name: "proportions_true"
+          description: "True cell type proportions for each spot"
+          required: false
+        uns:
+        - type: "string"
+          name: "cell_type_names"
+          description: "Cell type names corresponding to values in `cell_type`"
+          required: false
+        - type: "string"
+          name: "dataset_id"
+          description: "A unique identifier for the dataset"
+          required: true
+        - name: "dataset_name"
+          type: "string"
+          description: "Nicely formatted name."
+          required: true
+        - type: "string"
+          name: "dataset_url"
+          description: "Link to the original source of the dataset."
+          required: false
+        - name: "dataset_reference"
+          type: "string"
+          description: "Bibtex reference of the paper in which the dataset was published."
+          required: false
+        - name: "dataset_summary"
+          type: "string"
+          description: "Short description of the dataset."
+          required: true
+        - name: "dataset_description"
+          type: "string"
+          description: "Long description of the dataset."
+          required: true
+        - name: "dataset_organism"
+          type: "string"
+          description: "The organism of the sample in the dataset."
+          required: false
+    example:
+    - "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/simulated_dataset.h5ad"
+    must_exist: true
+    create_parent: true
+    required: true
+    direction: "input"
+    multiple: false
+    multiple_sep: ";"
+  - type: "file"
+    name: "--output_single_cell"
+    label: "Single cell data"
+    summary: "The single-cell data file used as reference for the spatial data"
+    info:
+      format:
+        type: "h5ad"
+        layers:
+        - type: "integer"
+          name: "counts"
+          description: "Raw counts"
+          required: true
+        obs:
+        - type: "string"
+          name: "cell_type"
+          description: "Cell type label IDs"
+          required: true
+        - type: "string"
+          name: "batch"
+          description: "A batch identifier. This label is very context-dependent and\
+            \ may be a combination of the tissue, assay, donor, etc."
+          required: false
+        uns:
+        - type: "string"
+          name: "cell_type_names"
+          description: "Cell type names corresponding to values in `cell_type`"
+          required: true
+        - type: "string"
+          name: "dataset_id"
+          description: "A unique identifier for the dataset"
+          required: true
+    example:
+    - "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/single_cell_ref.h5ad"
+    must_exist: true
+    create_parent: true
+    required: true
+    direction: "output"
+    multiple: false
+    multiple_sep: ";"
+  - type: "file"
+    name: "--output_spatial_masked"
+    label: "Spatial masked"
+    summary: "The spatial data file containing transcription profiles for each capture\
+      \ location, without cell-type proportions for each spot."
+    info:
+      format:
+        type: "h5ad"
+        layers:
+        - type: "integer"
+          name: "counts"
+          description: "Raw counts"
+          required: true
+        obsm:
+        - type: "double"
+          name: "spatial"
+          description: "XY coordinates for each spot"
+          required: true
+        uns:
+        - type: "string"
+          name: "cell_type_names"
+          description: "Cell type names corresponding to columns of `proportions_pred`\
+            \ in output"
+          required: true
+        - type: "string"
+          name: "dataset_id"
+          description: "A unique identifier for the dataset"
+          required: true
+    example:
+    - "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/spatial_masked.h5ad"
+    must_exist: true
+    create_parent: true
+    required: true
+    direction: "output"
+    multiple: false
+    multiple_sep: ";"
+  - type: "file"
+    name: "--output_solution"
+    label: "Solution"
+    summary: "The spatial data file containing transcription profiles for each capture\
+      \ location, with true cell-type proportions for each spot / capture location."
+    info:
+      format:
+        type: "h5ad"
+        layers:
+        - type: "integer"
+          name: "counts"
+          description: "Raw counts"
+          required: true
+        obsm:
+        - type: "double"
+          name: "spatial"
+          description: "XY coordinates for each spot"
+          required: true
+        - type: "double"
+          name: "proportions_true"
+          description: "True cell type proportions for each spot"
+          required: true
+        uns:
+        - name: "cell_type_names"
+          type: "string"
+          description: "Cell type names corresponding to columns of `proportions`"
+          required: true
+        - name: "dataset_id"
+          type: "string"
+          description: "A unique identifier for the dataset"
+          required: true
+        - name: "dataset_name"
+          type: "string"
+          description: "Nicely formatted name."
+          required: true
+        - type: "string"
+          name: "dataset_url"
+          description: "Link to the original source of the dataset."
+          required: false
+        - name: "dataset_reference"
+          type: "string"
+          description: "Bibtex reference of the paper in which the dataset was published."
+          required: false
+        - name: "dataset_summary"
+          type: "string"
+          description: "Short description of the dataset."
+          required: true
+        - name: "dataset_description"
+          type: "string"
+          description: "Long description of the dataset."
+          required: true
+        - name: "dataset_organism"
+          type: "string"
+          description: "The organism of the sample in the dataset."
+          required: false
+        - type: "string"
+          name: "normalization_id"
+          description: "Which normalization was used"
+          required: true
+    example:
+    - "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/solution.h5ad"
+    must_exist: true
+    create_parent: true
+    required: true
+    direction: "output"
+    multiple: false
+    multiple_sep: ";"
+resources:
+- type: "python_script"
+  path: "script.py"
+  is_executable: true
+- type: "file"
+  path: "subset_h5ad_by_format.py"
+test_resources:
+- type: "python_script"
+  path: "run_and_check_output.py"
+  is_executable: true
+- type: "file"
+  path: "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas"
+  dest: "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas"
+info:
+  type: "data_processors"
+  type_info:
+    label: "Split Dataset"
+    summary: "A spatial decomposition dataset processor."
+    description: "Prepare a common dataset for the task_spatial_decomposition task.\n"
+status: "enabled"
+repositories:
+- type: "github"
+  name: "core"
+  repo: "openproblems-bio/core"
+  tag: "build/main"
+  path: "viash/core"
+license: "MIT"
+links:
+  repository: "https://github.com/openproblems-bio/task_spatial_decomposition"
+  docker_registry: "ghcr.io"
+runners:
+- type: "executable"
+  id: "executable"
+  docker_setup_strategy: "ifneedbepullelsecachedbuild"
+- type: "nextflow"
+  id: "nextflow"
+  directives:
+    label:
+    - "midtime"
+    - "highmem"
+    - "highcpu"
+    tag: "$id"
+  auto:
+    simplifyInput: true
+    simplifyOutput: false
+    transcript: false
+    publish: false
+  config:
+    labels:
+      lowmem: "memory = 20.Gb"
+      midmem: "memory = 50.Gb"
+      highmem: "memory = 100.Gb"
+      lowcpu: "cpus = 5"
+      midcpu: "cpus = 15"
+      highcpu: "cpus = 30"
+      lowtime: "time = 1.h"
+      midtime: "time = 4.h"
+      hightime: "time = 8.h"
+      veryhightime: "time = 24.h"
+    script:
+    - "process.errorStrategy = 'ignore'"
+  debug: false
+  container: "docker"
+engines:
+- type: "docker"
+  id: "docker"
+  image: "openproblems/base_python:1.0.0"
+  namespace_separator: "/"
+  entrypoint: []
+  cmd: null
+build_info:
+  config: "src/data_processors/split_dataset/config.vsh.yaml"
+  runner: "nextflow"
+  engine: "docker"
+  output: "target/nextflow/data_processors/split_dataset"
+  executable: "target/nextflow/data_processors/split_dataset/main.nf"
+  viash_version: "0.9.0"
+  git_commit: "c8176e521f022d3d1376f956042125524ef18911"
+  git_remote: "https://github.com/openproblems-bio/task_spatial_decomposition"
+package_config:
+  name: "task_spatial_decomposition"
+  version: "build_main"
+  label: "Spatial Decomposition"
+  summary: "Estimation of cell type proportions per spot in 2D space from spatial\
+    \ transcriptomic data coupled with corresponding single-cell data"
+  description: "Spatial decomposition (also often referred to as Spatial deconvolution)\
+    \ is applicable to spatial transcriptomics data where the transcription profile\
+    \ of each capture location (spot, voxel, bead, etc.) do not share a bijective\
+    \ relationship with the cells in the tissue, i.e., multiple cells may contribute\
+    \ to the same capture location. The task of spatial decomposition then refers\
+    \ to estimating the composition of cell types/states that are present at each\
+    \ capture location. The cell type/states estimates are presented as proportion\
+    \ values, representing the proportion of the cells at each capture location that\
+    \ belong to a given cell type.\n\nWe distinguish between _reference-based_ decomposition\
+    \ and _de novo_ decomposition, where the former leverage external data (e.g.,\
+    \ scRNA-seq or scNuc-seq) to guide the inference process, while the latter only\
+    \ work with the spatial data. We require that all datasets have an associated\
+    \ reference single cell data set, but methods are free to ignore this information.\
+    \ \n\nDue to the lack of real datasets with the necessary ground-truth, this task\
+    \ makes use of a simulated dataset generated by creating cell-aggregates by sampling\
+    \ from a Dirichlet distribution. The ground-truth dataset consists of the spatial\
+    \ expression matrix, XY coordinates of the spots, true cell-type proportions for\
+    \ each spot, and the reference single-cell data (from which cell aggregated were\
+    \ simulated).\n"
+  info:
+    thumbnail: "thumbnail.svg"
+    test_resources:
+    - type: "s3"
+      path: "s3://openproblems-data/resources_test/common/cxg_mouse_pancreas_atlas/"
+      dest: "resources_test/common/cxg_mouse_pancreas_atlas"
+    - type: "s3"
+      path: "s3://openproblems-data/resources_test/task_spatial_decomposition/"
+      dest: "resources_test/task_spatial_decomposition"
+  repositories:
+  - type: "github"
+    name: "core"
+    repo: "openproblems-bio/core"
+    tag: "build/main"
+    path: "viash/core"
+  viash_version: "0.9.0"
+  source: "src"
+  target: "target"
+  config_mods:
+  - ".runners[.type == \"nextflow\"].config.labels := { lowmem : \"memory = 20.Gb\"\
+    , midmem : \"memory = 50.Gb\", highmem : \"memory = 100.Gb\", lowcpu : \"cpus\
+    \ = 5\", midcpu : \"cpus = 15\", highcpu : \"cpus = 30\", lowtime : \"time = 1.h\"\
+    , midtime : \"time = 4.h\", hightime : \"time = 8.h\", veryhightime : \"time =\
+    \ 24.h\" }\n.runners[.type == \"nextflow\"].config.script := \"process.errorStrategy\
+    \ = 'ignore'\"\n"
+  authors:
+  - name: "Giovanni Palla"
+    roles:
+    - "author"
+    - "maintainer"
+    info:
+      github: "giovp"
+  - name: "Scott Gigante"
+    roles:
+    - "author"
+    info:
+      github: "scottgigante"
+      orcid: "0000-0002-4544-2764"
+  - name: "Sai Nirmayi Yasa"
+    roles:
+    - "contributor"
+    info:
+      github: "sainirmayi"
+      orcid: "0009-0003-6319-9803"
+  keywords:
+  - "single-cell"
+  - "openproblems"
+  - "benchmark"
+  - "spatial decomposition"
+  license: "MIT"
+  organization: "openproblems-bio"
+  links:
+    repository: "https://github.com/openproblems-bio/task_spatial_decomposition"
+    docker_registry: "ghcr.io"
+    issue_tracker: "https://github.com/openproblems-bio/task_spatial_decomposition/issues"

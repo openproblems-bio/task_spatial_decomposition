@@ -4,8 +4,8 @@ library(Matrix)
 
 ## VIASH START
 par <- list(
-  input_single_cell = "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/single_cell_ref.h5ad",
-  input_spatial_masked = "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/spatial_masked.h5ad",
+  input_single_cell = "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/single_cell_ref.h5ad",
+  input_spatial_masked = "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/spatial_masked.h5ad",
   output = "output.h5ad", 
   fc_cutoff = 0.5, 
   fc_cutoff_reg = 0.75
@@ -23,7 +23,7 @@ input_spatial <- anndata::read_h5ad(par$input_spatial)
 # set spatial coordinates for the single cell data
 coordinates <- matrix(1, dim(input_single_cell)[1], 2)
 rownames(coordinates) <- rownames(input_single_cell)
-input_single_cell$obsm <- list(coordinates = coordinates)
+input_single_cell$obsm <- list(spatial = coordinates)
 
 # remove rare cell types to prevent RCTD error
 # celltype_counts <- table(input_single_cell$obs$cell_type)
@@ -39,8 +39,8 @@ reference <- Reference(sc_counts, sc_cell_types)
 
 # get spatial data counts
 sp_counts <- t(input_spatial$layers['counts'])
-# get spatial data coordinates
-sp_coords <- as.data.frame(input_spatial$obsm['coordinates'])
+# get spatial data spatial
+sp_coords <- as.data.frame(input_spatial$obsm['spatial'])
 colnames(sp_coords) <- c("x", "y")
 rownames(sp_coords) <- rownames(input_spatial)
 # create spatial object to use in RCTD
@@ -84,7 +84,7 @@ output <- anndata::AnnData(
     method_id = meta[["name"]]
   ),
   obsm = list(
-    coordinates = coordinates,
+    spatial = coordinates,
     proportions_pred = norm_weights
   ),
   layers = list(

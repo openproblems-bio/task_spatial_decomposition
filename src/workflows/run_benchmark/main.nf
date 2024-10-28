@@ -42,7 +42,7 @@ workflow run_wf {
     }
     
     // extract the dataset metadata
-    | extract_metadata.run(
+    | extract_uns_metadata.run(
       fromState: [input: "input_solution"],
       toState: { id, output, state ->
         state + [
@@ -150,7 +150,7 @@ workflow run_wf {
   output_ch = score_ch
 
     // extract the scores
-    | extract_metadata.run(
+    | extract_uns_metadata.run(
       key: "extract_scores",
       fromState: [input: "metric_output"],
       toState: { id, output, state ->

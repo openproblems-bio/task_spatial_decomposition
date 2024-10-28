@@ -1,15 +1,17 @@
 __merge__: ../../api/comp_method.yaml
 
 name: seurat
+label: Seurat
+summary: "Seurat method that is based on Canonical Correlation Analysis (CCA)."
+description: |
+  This method applies the 'anchor'-based integration workflow introduced in Seurat v3, that enables the probabilistic transfer of annotations from a reference to a query set. First, mutual nearest neighbors (anchors) are identified from the reference scRNA-seq and query spatial datasets. Then, annotations are transfered from the single cell reference data to the sptial data along with prediction scores for each spot.
 info:
-  label: Seurat
-  summary: "Seurat method that is based on Canonical Correlation Analysis (CCA)."
-  description: |
-    This method applies the 'anchor'-based integration workflow introduced in Seurat v3, that enables the probabilistic transfer of annotations from a reference to a query set. First, mutual nearest neighbors (anchors) are identified from the reference scRNA-seq and query spatial datasets. Then, annotations are transfered from the single cell reference data to the sptial data along with prediction scores for each spot.
   preferred_normalization: counts
-  reference: stuart2019comprehensive
-  documentation_url: https://satijalab.org/seurat/articles/spatial_vignette
-  repository_url: https://github.com/satijalab/seurat
+references: 
+  doi: 10.1016/j.cell.2019.05.031
+links:
+  documentation: https://satijalab.org/seurat/articles/spatial_vignette
+  repository: https://github.com/satijalab/seurat
 
 arguments:
   - name: "--n_pcs"
@@ -27,7 +29,7 @@ resources:
 
 engines:
   - type: docker
-    image: ghcr.io/openproblems-bio/base_r:1.0.4
+    image: openproblems/base_r:1.0.0
     setup:
       - type: r
         cran: [Matrix, Seurat]

@@ -3,8 +3,8 @@ import sklearn.metrics
 
 ## VIASH START
 par = {
-  'input_method': 'resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/output.h5ad',
-  'input_solution': 'resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/solution.h5ad',
+  'input_method': 'resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/output.h5ad',
+  'input_solution': 'resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/solution.h5ad',
   'output': 'score.h5ad'
 }
 meta = {

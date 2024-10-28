@@ -6,10 +6,11 @@ argument_groups:
   arguments:
   - type: "file"
     name: "--input_single_cell"
+    label: "Single cell data"
+    summary: "The single-cell data file used as reference for the spatial data"
     info:
-      label: "Single cell data"
-      summary: "The single-cell data file used as reference for the spatial data"
-      slots:
+      format:
+        type: "h5ad"
         layers:
         - type: "integer"
           name: "counts"
@@ -35,7 +36,7 @@ argument_groups:
           description: "A unique identifier for the dataset"
           required: true
     example:
-    - "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/single_cell_ref.h5ad"
+    - "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/single_cell_ref.h5ad"
     must_exist: true
     create_parent: true
     required: true
@@ -44,11 +45,12 @@ argument_groups:
     multiple_sep: ";"
   - type: "file"
     name: "--input_spatial_masked"
+    label: "Spatial masked"
+    summary: "The spatial data file containing transcription profiles for each capture\
+      \ location, without cell-type proportions for each spot."
     info:
-      label: "Spatial masked"
-      summary: "The spatial data file containing transcription profiles for each capture\
-        \ location, without cell-type proportions for each spot."
-      slots:
+      format:
+        type: "h5ad"
         layers:
         - type: "integer"
           name: "counts"
@@ -56,7 +58,7 @@ argument_groups:
           required: true
         obsm:
         - type: "double"
-          name: "coordinates"
+          name: "spatial"
           description: "XY coordinates for each spot"
           required: true
         uns:
@@ -70,7 +72,7 @@ argument_groups:
           description: "A unique identifier for the dataset"
           required: true
     example:
-    - "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/spatial_masked.h5ad"
+    - "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/spatial_masked.h5ad"
     must_exist: true
     create_parent: true
     required: true
@@ -79,11 +81,12 @@ argument_groups:
     multiple_sep: ";"
   - type: "file"
     name: "--input_solution"
+    label: "Solution"
+    summary: "The spatial data file containing transcription profiles for each capture\
+      \ location, with true cell-type proportions for each spot / capture location."
     info:
-      label: "Solution"
-      summary: "The spatial data file containing transcription profiles for each capture\
-        \ location, with true cell-type proportions for each spot / capture location."
-      slots:
+      format:
+        type: "h5ad"
         layers:
         - type: "integer"
           name: "counts"
@@ -91,7 +94,7 @@ argument_groups:
           required: true
         obsm:
         - type: "double"
-          name: "coordinates"
+          name: "spatial"
           description: "XY coordinates for each spot"
           required: true
         - type: "double"
@@ -136,7 +139,7 @@ argument_groups:
           description: "Which normalization was used"
           required: true
     example:
-    - "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/solution.h5ad"
+    - "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/solution.h5ad"
     must_exist: true
     create_parent: true
     required: true
@@ -206,21 +209,15 @@ resources:
   path: "main.nf"
   is_executable: true
   entrypoint: "run_wf"
-- type: "file"
-  path: "task_info.yaml"
 info: null
 status: "enabled"
 dependencies:
-- name: "common/check_dataset_schema"
+- name: "h5ad/extract_uns_metadata"
   repository:
     type: "github"
-    repo: "openproblems-bio/openproblems-v2"
-    tag: "main_build"
-- name: "common/extract_metadata"
-  repository:
-    type: "github"
-    repo: "openproblems-bio/openproblems-v2"
-    tag: "main_build"
+    repo: "openproblems-bio/core"
+    tag: "build/main"
+    path: "viash/core"
 - name: "control_methods/random_proportions"
   repository:
     type: "local"
@@ -259,6 +256,11 @@ dependencies:
     type: "local"
 repositories:
 - type: "github"
+  name: "core"
+  repo: "openproblems-bio/core"
+  tag: "build/main"
+  path: "viash/core"
+- type: "github"
   name: "openproblems_v2"
   repo: "openproblems-bio/openproblems-v2"
   tag: "main_build"
@@ -288,6 +290,8 @@ runners:
       midtime: "time = 4.h"
       hightime: "time = 8.h"
       veryhightime: "time = 24.h"
+    script:
+    - "process.errorStrategy = 'ignore'"
   debug: false
   container: "docker"
 build_info:
@@ -296,12 +300,11 @@ build_info:
   engine: "native"
   output: "target/nextflow/workflows/run_benchmark"
   executable: "target/nextflow/workflows/run_benchmark/main.nf"
-  viash_version: "0.9.0-RC6"
-  git_commit: "6b25bf9ea396f0eb843e9e3e7f6d39bda46a24c1"
+  viash_version: "0.9.0"
+  git_commit: "c8176e521f022d3d1376f956042125524ef18911"
   git_remote: "https://github.com/openproblems-bio/task_spatial_decomposition"
   dependencies:
-  - "target/dependencies/github/openproblems-bio/openproblems-v2/main_build/nextflow/common/check_dataset_schema"
-  - "target/dependencies/github/openproblems-bio/openproblems-v2/main_build/nextflow/common/extract_metadata"
+  - "target/dependencies/github/openproblems-bio/core/build/main/nextflow/h5ad/extract_uns_metadata"
   - "target/nextflow/control_methods/random_proportions"
   - "target/nextflow/control_methods/true_proportions"
   - "target/nextflow/methods/cell2location"
@@ -317,16 +320,44 @@ build_info:
 package_config:
   name: "task_spatial_decomposition"
   version: "build_main"
-  description: "An OpenProblems benchmark task for spatial decomposition.\n"
+  label: "Spatial Decomposition"
+  summary: "Estimation of cell type proportions per spot in 2D space from spatial\
+    \ transcriptomic data coupled with corresponding single-cell data"
+  description: "Spatial decomposition (also often referred to as Spatial deconvolution)\
+    \ is applicable to spatial transcriptomics data where the transcription profile\
+    \ of each capture location (spot, voxel, bead, etc.) do not share a bijective\
+    \ relationship with the cells in the tissue, i.e., multiple cells may contribute\
+    \ to the same capture location. The task of spatial decomposition then refers\
+    \ to estimating the composition of cell types/states that are present at each\
+    \ capture location. The cell type/states estimates are presented as proportion\
+    \ values, representing the proportion of the cells at each capture location that\
+    \ belong to a given cell type.\n\nWe distinguish between _reference-based_ decomposition\
+    \ and _de novo_ decomposition, where the former leverage external data (e.g.,\
+    \ scRNA-seq or scNuc-seq) to guide the inference process, while the latter only\
+    \ work with the spatial data. We require that all datasets have an associated\
+    \ reference single cell data set, but methods are free to ignore this information.\
+    \ \n\nDue to the lack of real datasets with the necessary ground-truth, this task\
+    \ makes use of a simulated dataset generated by creating cell-aggregates by sampling\
+    \ from a Dirichlet distribution. The ground-truth dataset consists of the spatial\
+    \ expression matrix, XY coordinates of the spots, true cell-type proportions for\
+    \ each spot, and the reference single-cell data (from which cell aggregated were\
+    \ simulated).\n"
   info:
+    thumbnail: "thumbnail.svg"
     test_resources:
     - type: "s3"
-      path: "s3://openproblems-data/resources_test/common/"
-      dest: "resources_test/common"
+      path: "s3://openproblems-data/resources_test/common/cxg_mouse_pancreas_atlas/"
+      dest: "resources_test/common/cxg_mouse_pancreas_atlas"
     - type: "s3"
-      path: "s3://openproblems-data/resources_test/spatial_decomposition/"
-      dest: "resources_test/spatial_decomposition"
-  viash_version: "0.9.0-RC6"
+      path: "s3://openproblems-data/resources_test/task_spatial_decomposition/"
+      dest: "resources_test/task_spatial_decomposition"
+  repositories:
+  - type: "github"
+    name: "core"
+    repo: "openproblems-bio/core"
+    tag: "build/main"
+    path: "viash/core"
+  viash_version: "0.9.0"
   source: "src"
   target: "target"
   config_mods:
@@ -334,7 +365,27 @@ package_config:
     , midmem : \"memory = 50.Gb\", highmem : \"memory = 100.Gb\", lowcpu : \"cpus\
     \ = 5\", midcpu : \"cpus = 15\", highcpu : \"cpus = 30\", lowtime : \"time = 1.h\"\
     , midtime : \"time = 4.h\", hightime : \"time = 8.h\", veryhightime : \"time =\
-    \ 24.h\" }"
+    \ 24.h\" }\n.runners[.type == \"nextflow\"].config.script := \"process.errorStrategy\
+    \ = 'ignore'\"\n"
+  authors:
+  - name: "Giovanni Palla"
+    roles:
+    - "author"
+    - "maintainer"
+    info:
+      github: "giovp"
+  - name: "Scott Gigante"
+    roles:
+    - "author"
+    info:
+      github: "scottgigante"
+      orcid: "0000-0002-4544-2764"
+  - name: "Sai Nirmayi Yasa"
+    roles:
+    - "contributor"
+    info:
+      github: "sainirmayi"
+      orcid: "0009-0003-6319-9803"
   keywords:
   - "single-cell"
   - "openproblems"

@@ -1,10 +1,11 @@
 type: file
-example: "resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/output.h5ad"
+example: "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/output.h5ad"
+label: Output
+summary: "Spatial data with estimated proportions."
 info:
-  label: Output
-  summary: "Spatial data with estimated proportions."
   description: "Spatial data file with estimated cell type proportions."
-  slots:
+  format:
+    type: h5ad
     layers: 
       - type: integer
         name: counts
@@ -12,7 +13,7 @@ info:
         required: true
     obsm:
       - type: double
-        name: coordinates
+        name: spatial
         description: XY coordinates for each spot
         required: true
       - type: double

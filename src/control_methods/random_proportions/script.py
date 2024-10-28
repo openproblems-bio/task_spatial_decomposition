@@ -3,9 +3,9 @@ import numpy as np
 
 ## VIASH START
 par = {
-  'input_single_cell': 'resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/single_cell_ref.h5ad',
-  'input_spatial_masked': 'resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/spatial_masked.h5ad',
-  'input_solution': 'resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/solution.h5ad',
+  'input_single_cell': 'resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/single_cell_ref.h5ad',
+  'input_spatial_masked': 'resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/spatial_masked.h5ad',
+  'input_solution': 'resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/solution.h5ad',
   'output': 'output.h5ad'
 }
 meta = {
@@ -31,7 +31,7 @@ output = ad.AnnData(
     'method_id': meta['name']
   },
   obsm={
-    'coordinates': input_spatial_masked.obsm['coordinates'],
+    'spatial': input_spatial_masked.obsm['spatial'],
     'proportions_pred': input_spatial_masked.obsm['proportions_pred']
   },
   layers={

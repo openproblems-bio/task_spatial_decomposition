@@ -1,11 +1,11 @@
 __merge__: ../../api/comp_control_method.yaml
 
 name: true_proportions
+label: True Proportions
+summary: "Positive control method that assigns celltype proportions from the ground truth."
+description: |
+  A positive control method with perfect assignment of predicted celltype proportions from the ground truth.
 info:
-  label: True Proportions
-  summary: "Positive control method that assigns celltype proportions from the ground truth."
-  description: |
-    A positive control method with perfect assignment of predicted celltype proportions from the ground truth.
   preferred_normalization: counts
 
 resources:
@@ -14,7 +14,7 @@ resources:
 
 engines:
   - type: docker
-    image: ghcr.io/openproblems-bio/base_python:1.0.4
+    image: openproblems/base_python:1.0.0
 
 runners:
   - type: executable

@@ -1,0 +1,87 @@
+namespace: data_processors
+name: dataset_simulator
+info:
+  type: data_proessors
+  type_info:
+    label: Dataset Simulator
+    summary: Simulate cell aggregates from single-cell data.
+    description: |
+      The dataset simulator creates cell-aggregates from the single-cell dataset by sampling from a Dirichlet distribution. The simulated data consists of the the spatial expression matrix, the XY coordinates of the spots, the cell-type proportions in each spot, and the reference single-cell data.
+    variants: 
+      alpha_1:
+        alpha: 1
+      alpha_5:
+        alpha: 5
+      alpha_0_5:
+        alpha: 0.5
+
+argument_groups:
+  - name: Input
+    arguments:
+      - name: "--input"
+        type: file
+        description: Single-cell reference dataset
+        direction: input
+        required: true
+        __merge__: ../../api/file_common_dataset.yaml
+  - name: Simulation options
+    arguments: 
+      - name: "--alpha"
+        type: double
+        description: Alpha value to use for generating synthetic dataset
+        default: 1.0
+      - name: "--n_obs"
+        type: integer
+        description: Number of spatial observations to generate. Default value is 100.
+        default: 100
+      - name: "--cell_lb"
+        type: integer
+        description: Lower bound for number of cells at each spot. Default value is 10.
+        default: 10
+      - name: "--cell_ub"
+        type: integer
+        description: Upper bound for number of cells at each spot. Default value is 30.
+        default: 30
+      - name: "--umi_lb"
+        type: integer
+        description: Lower bound for number of UMIs at each spot. Default value is 1000.
+        default: 1000
+      - name: "--umi_ub"
+        type: integer
+        description: Upper bound for number of UMIs at each spot. Default value is 5000.
+        default: 5000
+  - name: Output
+    arguments:
+      - name: "--simulated_data"
+        type: file
+        direction: output
+        description: Simulated dataset
+        required: true
+        __merge__: ../../api/file_simulated_dataset.yaml
+
+resources:
+  - type: python_script
+    path: script.py
+
+test_resources:
+  # - type: python_script
+  #   path: /common/component_tests/check_config.py
+  - type: python_script
+    path: /common/component_tests/run_and_check_output.py
+  - path: /resources_test/common/cxg_mouse_pancreas_atlas
+    dest: resources_test/common/cxg_mouse_pancreas_atlas
+
+engines:
+  - type: docker
+    image: openproblems/base_python:1.0.0
+    setup:
+      - type: python
+        packages: 
+          - numpy<2.0
+          - scanpy
+
+runners:   
+  - type: executable
+  - type: nextflow
+    directives: 
+      label: [midtime, highmem, highcpu]

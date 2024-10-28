@@ -1,9 +1,10 @@
 type: file
-example: "resources_test/cxg_mouse_pancreas_atlas/simulated_dataset.h5ad"
+example: "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/simulated_dataset.h5ad"
+label: "Common Dataset"
+summary: A subset of the common dataset.
 info:
-  label: "Common Dataset"
-  summary: A subset of the common dataset.
-  slots:
+  format:
+    type: h5ad
     layers:
       - type: integer
         name: counts
@@ -33,7 +34,7 @@ info:
         description: The resulting PCA embedding.
         required: true
       - type: double
-        name: coordinates
+        name: spatial
         description: XY coordinates for each spot.
         required: false
       - type: double

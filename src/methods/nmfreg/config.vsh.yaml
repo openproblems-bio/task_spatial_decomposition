@@ -1,15 +1,17 @@
 __merge__: ../../api/comp_method.yaml
 
 name: nmfreg
+label: NMFreg
+summary: "NMFreg reconstructs gene expression as a weighted combination of cell type signatures defined by scRNA-seq."
+description: |
+  Non-Negative Matrix Factorization regression (NMFreg) is a decomposition method that reconstructs expression of each spatial location as a weighted combination of cell-type signatures defined by scRNA-seq. It was originally developed for Slide-seq data. This is a re-implementation from https://github.com/tudaga/NMFreg_tutorial.
 info:
-  label: NMFreg
-  summary: "NMFreg reconstructs gene expression as a weighted combination of cell type signatures defined by scRNA-seq."
-  description: |
-    Non-Negative Matrix Factorization regression (NMFreg) is a decomposition method that reconstructs expression of each spatial location as a weighted combination of cell-type signatures defined by scRNA-seq. It was originally developed for Slide-seq data. This is a re-implementation from https://github.com/tudaga/NMFreg_tutorial.
   preferred_normalization: counts
-  reference: "rodriques2019slide"
-  documentation_url: https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html
-  repository_url: https://github.com/tudaga/NMFreg_tutorial/tree/master?tab=readme-ov-file
+references: 
+  doi: 10.1126/science.aaw1219
+links:
+  documentation: https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.NMF.html
+  repository: https://github.com/tudaga/NMFreg_tutorial/tree/master?tab=readme-ov-file
 
 arguments:
   - name: "--n_components"
@@ -23,7 +25,7 @@ resources:
 
 engines:
   - type: docker
-    image: ghcr.io/openproblems-bio/base_python:1.0.4
+    image: openproblems/base_python:1.0.0
     setup:
       - type: python
         packages: 

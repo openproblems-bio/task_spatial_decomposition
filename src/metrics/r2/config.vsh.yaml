@@ -8,9 +8,11 @@ info:
       summary: "R2 represents the proportion of variance in the true proportions which is explained by the predicted proportions."
       description: |
         R2, or the “coefficient of determination”, reports the fraction of the true proportion values' variance that can be explained by the predicted proportion values. The best score, and upper bound, is 1.0. There is no fixed lower bound for the metric. The uniform/non-weighted average across all cell types/states is used to summarise performance. By default, cases resulting in a score of NaN (perfect predictions) or -Inf (imperfect predictions) are replaced with 1.0 (perfect predictions) or 0.0 (imperfect predictions) respectively.
-      reference: miles2005rsquared
-      documentation_url: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html
-      repository_url: https://github.com/scikit-learn/scikit-learn
+      references: 
+        doi: 10.1002/0470013192.bsa526
+      links: 
+        documentation: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html
+        repository: https://github.com/scikit-learn/scikit-learn
       min: -inf
       max: 1
       maximize: true
@@ -21,7 +23,7 @@ resources:
 
 engines:
   - type: docker
-    image: ghcr.io/openproblems-bio/base_python:1.0.4
+    image: openproblems/base_python:1.0.0
     setup:
       - type: python
         packages: scikit-learn

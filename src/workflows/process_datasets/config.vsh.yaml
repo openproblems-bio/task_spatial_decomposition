@@ -1,5 +1,5 @@
-namespace: "workflows"
-name: "process_datasets"
+namespace: workflows
+name: process_datasets
 argument_groups:
   - name: Inputs
     arguments:
@@ -25,8 +25,9 @@ argument_groups:
         __merge__: /src/api/file_solution.yaml
         required: true
         direction: output
-      - name: "--simulated_data"
+      - name: "--output_simulated_data"
         type: file
+        __merge__: /src/api/file_simulated_dataset.yaml
         required: false
         direction: output
 resources:
@@ -35,14 +36,9 @@ resources:
     entrypoint: run_wf
   - path: /common/nextflow_helpers/helper.nf
 dependencies:
-  - name: common/check_dataset_schema
-    repository: openproblems_v2
-  - name: process_dataset/dataset_simulator
-  - name: process_dataset/split_dataset
-repositories:
-  - name: openproblems_v2
-    type: github
-    repo: openproblems-bio/openproblems-v2
-    tag: main_build
+  - name: schema/verify_data_structure
+    repository: core
+  - name: data_processors/dataset_simulator
+  - name: data_processors/split_dataset
 runners:
   - type: nextflow

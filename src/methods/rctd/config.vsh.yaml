@@ -1,15 +1,17 @@
 __merge__: ../../api/comp_method.yaml
 
 name: rctd
+label: RCTD
+summary: "RCTD learns cell type profiles from scRNA-seq to decompose cell type mixtures while correcting for differences across sequencing technologies."
+description: |
+  RCTD (Robust Cell Type Decomposition) is a decomposition method that uses signatures learnt from single-cell data to decompose spatial expression of tissues. It is able to use a platform effect normalization step, which normalizes the scRNA-seq cell type profiles to match the platform effects of the spatial transcriptomics dataset.
 info:
-  label: RCTD
-  summary: "RCTD learns cell type profiles from scRNA-seq to decompose cell type mixtures while correcting for differences across sequencing technologies."
-  description: |
-    RCTD (Robust Cell Type Decomposition) is a decomposition method that uses signatures learnt from single-cell data to decompose spatial expression of tissues. It is able to use a platform effect normalization step, which normalizes the scRNA-seq cell type profiles to match the platform effects of the spatial transcriptomics dataset.
   preferred_normalization: counts
-  reference: cable2021robust
-  documentation_url: https://raw.githack.com/dmcable/spacexr/master/vignettes/spatial-transcriptomics.html
-  repository_url: https://github.com/dmcable/spacexr
+references: 
+  doi: 10.1038/s41587-021-00830-w
+links:
+  documentation: https://raw.githack.com/dmcable/spacexr/master/vignettes/spatial-transcriptomics.html
+  repository: https://github.com/dmcable/spacexr
 
 arguments:
   - name: "--fc_cutoff"
@@ -27,7 +29,7 @@ resources:
 
 engines:
   - type: docker
-    image: ghcr.io/openproblems-bio/base_r:1.0.4
+    image: openproblems/base_r:1.0.0
     setup:
       - type: r
         cran: [ Matrix, pak ]

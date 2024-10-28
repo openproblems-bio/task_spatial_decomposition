@@ -6,8 +6,8 @@ import torch
 
 ## VIASH START
 par = {
-  'input_single_cell': 'resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/single_cell_ref.h5ad',
-  'input_spatial_masked': 'resources_test/spatial_decomposition/cxg_mouse_pancreas_atlas/spatial_masked.h5ad',
+  'input_single_cell': 'resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/single_cell_ref.h5ad',
+  'input_spatial_masked': 'resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/spatial_masked.h5ad',
   'output': 'output.h5ad',
   'num_epochs': 1000,
   'n_markers': 100
@@ -69,7 +69,7 @@ output = ad.AnnData(
   obs=input_spatial.obs[[]],
   var=input_spatial.var[[]],
   obsm={
-    'coordinates': input_spatial.obsm['coordinates'],
+    'spatial': input_spatial.obsm['spatial'],
     'proportions_pred': input_spatial.obsm['proportions_pred']
   },
   layers={

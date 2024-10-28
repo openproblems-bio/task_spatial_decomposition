@@ -14,7 +14,7 @@ workflow run_wf {
   main:
   output_ch = input_ch
 
-    | check_dataset_schema.run(
+    | verify_data_structure.run(
       fromState: { id, state ->
         def schema = findArgumentSchema(meta.config, "input")
         def schemaYaml = tempFile("schema.yaml")
@@ -44,8 +44,10 @@ workflow run_wf {
         input: "dataset", 
         alpha: "alpha"
       ],
-      toState: [ dataset: "simulated_data"], 
-      auto: [publish: true]
+      toState: [ 
+        dataset: "simulated_data",
+        output_simulated_data: "simulated_data"
+      ]
     )
 
     | split_dataset.run(
@@ -58,7 +60,7 @@ workflow run_wf {
     )
 
     // only output the files for which an output file was specified
-    | setState(["output_single_cell", "output_spatial_masked", "output_solution"])
+    | setState(["output_single_cell", "output_spatial_masked", "output_solution", "output_simulated_data"])
 
   emit:
   output_ch
