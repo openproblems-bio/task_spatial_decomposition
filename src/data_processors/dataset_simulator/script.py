@@ -55,9 +55,9 @@ def generate_synthetic_dataset(
     cell_ub: int
         upper bound for number of cells at each spot. Default value is 30.
     umi_lb: int
-        lower bound for number of UMIs at each spot. Default value is 10.
+        lower bound for number of UMIs at each spot. Default value is 1000.
     umi_ub: int
-        upper bound for number of UMIs at each spot. Default value is 30.
+        upper bound for number of UMIs at each spot. Default value is 5000.
 
     Returns
     -------
