@@ -8,6 +8,7 @@ cd "$REPO_ROOT"
 
 # Simulating spot-resolution spatial data with alpha = 1
 cat > /tmp/params.yaml << 'HERE'
+param_list:
   - id: spatial_decomposition_process_datasets_cellxgene_census
     input_states: s3://openproblems-data/resources/datasets/cellxgene_census/**/log_cp10k/state.yaml
   - id: spatial_decomposition_process_datasets_openproblems_v1
@@ -24,7 +25,7 @@ tw launch https://github.com/openproblems-bio/task_spatial_decomposition.git \
   --pull-latest \
   --main-script target/nextflow/workflows/process_datasets/main.nf \
   --workspace 53907369739130 \
-  --compute-env 6TeIFgV5OY4pJCk8I0bfOh \
+  --compute-env 5DwwhQoBi0knMSGcwThnlF \
   --params-file /tmp/params.yaml \
   --entry-name auto \
   --config common/nextflow_helpers/labels_tw.config \
