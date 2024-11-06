@@ -3157,7 +3157,7 @@ meta = [
     "engine" : "docker",
     "output" : "target/nextflow/metrics/jsd",
     "viash_version" : "0.9.0",
-    "git_commit" : "c8176e521f022d3d1376f956042125524ef18911",
+    "git_commit" : "48db076d743e61b57d8d5c720f83676d1cc8ace4",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {

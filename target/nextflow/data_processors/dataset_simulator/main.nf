@@ -2946,9 +2946,9 @@ meta = [
         {
           "type" : "integer",
           "name" : "--n_obs",
-          "description" : "Number of spatial observations to generate. Default value is 100.",
+          "description" : "Number of spatial observations to generate. Default value is 1000.",
           "default" : [
-            100
+            1000
           ],
           "required" : false,
           "direction" : "input",
@@ -3260,7 +3260,7 @@ meta = [
     "engine" : "docker",
     "output" : "target/nextflow/data_processors/dataset_simulator",
     "viash_version" : "0.9.0",
-    "git_commit" : "c8176e521f022d3d1376f956042125524ef18911",
+    "git_commit" : "48db076d743e61b57d8d5c720f83676d1cc8ace4",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {
@@ -3435,9 +3435,9 @@ def generate_synthetic_dataset(
     cell_ub: int
         upper bound for number of cells at each spot. Default value is 30.
     umi_lb: int
-        lower bound for number of UMIs at each spot. Default value is 10.
+        lower bound for number of UMIs at each spot. Default value is 1000.
     umi_ub: int
-        upper bound for number of UMIs at each spot. Default value is 30.
+        upper bound for number of UMIs at each spot. Default value is 5000.
 
     Returns
     -------

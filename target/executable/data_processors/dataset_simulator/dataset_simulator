@@ -187,8 +187,8 @@ function ViashHelp {
   echo ""
   echo "    --n_obs"
   echo "        type: integer"
-  echo "        default: 100"
-  echo "        Number of spatial observations to generate. Default value is 100."
+  echo "        default: 1000"
+  echo "        Number of spatial observations to generate. Default value is 1000."
   echo ""
   echo "    --cell_lb"
   echo "        type: integer"
@@ -497,9 +497,9 @@ RUN pip install --upgrade pip && \
   pip install --upgrade --no-cache-dir "numpy<2.0" "scanpy"
 
 LABEL org.opencontainers.image.description="Companion container for running component data_processors dataset_simulator"
-LABEL org.opencontainers.image.created="2024-10-28T13:13:50Z"
+LABEL org.opencontainers.image.created="2024-11-06T07:53:34Z"
 LABEL org.opencontainers.image.source="https://github.com/openproblems-bio/task_spatial_decomposition"
-LABEL org.opencontainers.image.revision="c8176e521f022d3d1376f956042125524ef18911"
+LABEL org.opencontainers.image.revision="48db076d743e61b57d8d5c720f83676d1cc8ace4"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER
@@ -935,7 +935,7 @@ if [ -z ${VIASH_PAR_ALPHA+x} ]; then
   VIASH_PAR_ALPHA="1.0"
 fi
 if [ -z ${VIASH_PAR_N_OBS+x} ]; then
-  VIASH_PAR_N_OBS="100"
+  VIASH_PAR_N_OBS="1000"
 fi
 if [ -z ${VIASH_PAR_CELL_LB+x} ]; then
   VIASH_PAR_CELL_LB="10"
@@ -1228,9 +1228,9 @@ def generate_synthetic_dataset(
     cell_ub: int
         upper bound for number of cells at each spot. Default value is 30.
     umi_lb: int
-        lower bound for number of UMIs at each spot. Default value is 10.
+        lower bound for number of UMIs at each spot. Default value is 1000.
     umi_ub: int
-        upper bound for number of UMIs at each spot. Default value is 30.
+        upper bound for number of UMIs at each spot. Default value is 5000.
 
     Returns
     -------

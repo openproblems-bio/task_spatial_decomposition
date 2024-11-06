@@ -32,8 +32,8 @@ argument_groups:
         default: 1.0
       - name: "--n_obs"
         type: integer
-        description: Number of spatial observations to generate. Default value is 100.
-        default: 100
+        description: Number of spatial observations to generate. Default value is 1000.
+        default: 1000
       - name: "--cell_lb"
         type: integer
         description: Lower bound for number of cells at each spot. Default value is 10.
