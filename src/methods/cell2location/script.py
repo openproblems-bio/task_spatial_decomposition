@@ -1,5 +1,9 @@
 import anndata as ad
 import numpy as np
+import os 
+
+os.environ["THEANO_FLAGS"] = 'device=cuda,floatX=float32,force_device=True'
+
 from cell2location.cluster_averages.cluster_averages import compute_cluster_averages
 from cell2location.models import Cell2location
 from cell2location.models import RegressionModel
@@ -45,6 +49,7 @@ if not par["hard_coded_reference"]:
     batch_key="batch_key",
     # cell type, covariate used for constructing signatures
     labels_key="cell_type",
+    # use_gpu=True
   )
   sc_model = RegressionModel(input_single_cell)
   sc_model.train(max_epochs=par["max_epochs_sc"], batch_size=par["sc_batch_size"])
