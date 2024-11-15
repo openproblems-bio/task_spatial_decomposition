@@ -3132,7 +3132,7 @@ meta = [
     "engine" : "docker",
     "output" : "target/nextflow/methods/seurat",
     "viash_version" : "0.9.0",
-    "git_commit" : "48db076d743e61b57d8d5c720f83676d1cc8ace4",
+    "git_commit" : "465a704d2aab5a1e1573c96be95df4a97cf31a95",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {
@@ -3302,6 +3302,8 @@ seurat_sp <- SCTransform(
 
 seurat_sp <- RunPCA(seurat_sp, assay = "SCT", verbose = FALSE, n_pcs = par\\$n_pcs)
 
+options(future.globals.maxSize = 30 * 1024^3)
+
 # Normalize and do dimred for single cell data
 seurat_sc <- SCTransform(
   seurat_sc,
@@ -3311,7 +3313,7 @@ seurat_sc <- SCTransform(
   conserve.memory = TRUE
 )
 
-seurat_sc <- RunPCA(seurat_sc, verbose = FALSE, n_pcs = par\\$n_pcs)
+seurat_sc <- RunPCA(seurat_sc, assay = "SCT", verbose = FALSE, n_pcs = par\\$n_pcs)
 
 # find anchors (MNN's to compute adjustmen vectors)
 anchors <- FindTransferAnchors(

@@ -13,11 +13,11 @@ RUN_ID="run_$(date +%Y-%m-%d_%H-%M-%S)"
 publish_dir="s3://openproblems-data/resources/task_spatial_decomposition/results/${RUN_ID}"
 
 # write the parameters to file
-ccat > /tmp/params.yaml << 'HERE'
+cat > /tmp/params.yaml << 'HERE'
 id: spatial_decomposition_process_datasets
 input_states: s3://openproblems-data/resources/task_spatial_decomposition/datasets/**/state.yaml
-settings: '{"output_spatial_masked": "$id/spatial_masked.h5ad", "output_single_cell": "$id/single_cell_ref.h5ad", "output_solution": "$id/solution.h5ad", "alpha": 1.0, "simulated_data": "$id/simulated_dataset.h5ad"}'
-rename_keys: 'input:output_dataset'
+settings: '{"output_scores": "scores.yaml", "output_dataset_info": "dataset_info.yaml", "output_method_configs": "method_configs.yaml", "output_metric_configs": "metric_configs.yaml", "output_task_info": "task_info.yaml"}'
+rename_keys: 'input_single_cell:output_single_cell;input_spatial_masked:output_spatial_masked;input_solution:output_solution'
 output_state: "$id/state.yaml"
 publish_dir: s3://openproblems-data/resources/task_spatial_decomposition/datasets
 HERE
@@ -27,7 +27,7 @@ tw launch https://github.com/openproblems-bio/task_spatial_decomposition.git \
   --pull-latest \
   --main-script target/nextflow/workflows/run_benchmark/main.nf \
   --workspace 53907369739130 \
-  --compute-env 6TeIFgV5OY4pJCk8I0bfOh \
+  --compute-env 5DwwhQoBi0knMSGcwThnlF \
   --params-file /tmp/params.yaml \
   --entry-name auto \
   --config common/nextflow_helpers/labels_tw.config \

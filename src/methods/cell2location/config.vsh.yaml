@@ -63,6 +63,8 @@ arguments:
   - name: "--max_epochs_st"
     type: integer
     default: 30000
+    info:
+      test_default: 1000
     description: Maximum number of epochs to train cell2location model for spatial mapping.
 
 resources:
@@ -71,18 +73,16 @@ resources:
 
 engines:
   - type: docker
-    image: openproblems/base_python:1.0.0
+    image: openproblems/base_pytorch_nvidia:1.0.0
     setup:
       - type: python
         packages: 
-          - scvi-tools==1.0.4
+          - scvi-tools 
           - cell2location
-          - jax==0.4.23
-          - jaxlib==0.4.23
-          - scipy<1.13 # The scipy.linalg functions tri, triu & tril are deprecated and will be removed in SciPy 1.13.
-
+          - theano
+          - pymc
 runners:
   - type: executable
   - type: nextflow
     directives:
-      label: [hightime, midmem, midcpu]
+      label: [hightime, midmem, midcpu, gpu]

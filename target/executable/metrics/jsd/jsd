@@ -469,9 +469,9 @@ RUN pip install --upgrade pip && \
   pip install --upgrade --no-cache-dir "numpy" "scipy"
 
 LABEL org.opencontainers.image.description="Companion container for running component metrics jsd"
-LABEL org.opencontainers.image.created="2024-11-06T07:53:34Z"
+LABEL org.opencontainers.image.created="2024-11-15T08:48:27Z"
 LABEL org.opencontainers.image.source="https://github.com/openproblems-bio/task_spatial_decomposition"
-LABEL org.opencontainers.image.revision="48db076d743e61b57d8d5c720f83676d1cc8ace4"
+LABEL org.opencontainers.image.revision="465a704d2aab5a1e1573c96be95df4a97cf31a95"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER

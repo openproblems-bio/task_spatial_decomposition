@@ -24,8 +24,8 @@ publish_dir="resources/results/${RUN_ID}"
 cat > /tmp/params.yaml << HERE
 id: spatial_decomposition_process_datasets
 input_states: resources/datasets/**/log_cp10k/state.yaml
-settings: '{"output_spatial_masked": "$id/spatial_masked.h5ad", "output_single_cell": "$id/single_cell_ref.h5ad", "output_solution": "$id/solution.h5ad", "alpha": 1.0, "simulated_data": "$id/simulated_dataset.h5ad"}'
-rename_keys: 'input:output_dataset'
+settings: '{"output_scores": "scores.yaml", "output_dataset_info": "dataset_info.yaml", "output_method_configs": "method_configs.yaml", "output_metric_configs": "metric_configs.yaml", "output_task_info": "task_info.yaml"}'
+rename_keys: 'input_single_cell:output_single_cell;input_spatial_masked:output_spatial_masked;input_solution:output_solution'
 output_state: "$id/state.yaml"
 publish_dir: "$publish_dir"
 HERE

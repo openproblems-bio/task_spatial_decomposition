@@ -3077,6 +3077,9 @@ meta = [
           "type" : "integer",
           "name" : "--max_epochs_st",
           "description" : "Maximum number of epochs to train cell2location model for spatial mapping.",
+          "info" : {
+            "test_default" : 1000
+          },
           "default" : [
             30000
           ],
@@ -3177,7 +3180,8 @@ meta = [
         "label" : [
           "hightime",
           "midmem",
-          "midcpu"
+          "midcpu",
+          "gpu"
         ],
         "tag" : "$id"
       },
@@ -3212,18 +3216,17 @@ meta = [
     {
       "type" : "docker",
       "id" : "docker",
-      "image" : "openproblems/base_python:1.0.0",
+      "image" : "openproblems/base_pytorch_nvidia:1.0.0",
       "namespace_separator" : "/",
       "setup" : [
         {
           "type" : "python",
           "user" : false,
           "packages" : [
-            "scvi-tools==1.0.4",
+            "scvi-tools",
             "cell2location",
-            "jax==0.4.23",
-            "jaxlib==0.4.23",
-            "scipy<1.13"
+            "theano",
+            "pymc"
           ],
           "upgrade" : true
         }
@@ -3236,7 +3239,7 @@ meta = [
     "engine" : "docker",
     "output" : "target/nextflow/methods/cell2location",
     "viash_version" : "0.9.0",
-    "git_commit" : "48db076d743e61b57d8d5c720f83676d1cc8ace4",
+    "git_commit" : "465a704d2aab5a1e1573c96be95df4a97cf31a95",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {
@@ -3335,6 +3338,10 @@ tempscript=".viash_script.sh"
 cat > "$tempscript" << VIASHMAIN
 import anndata as ad
 import numpy as np
+import os 
+
+os.environ["THEANO_FLAGS"] = 'device=cuda,floatX=float32,force_device=True'
+
 from cell2location.cluster_averages.cluster_averages import compute_cluster_averages
 from cell2location.models import Cell2location
 from cell2location.models import RegressionModel
@@ -3402,6 +3409,7 @@ if not par["hard_coded_reference"]:
     batch_key="batch_key",
     # cell type, covariate used for constructing signatures
     labels_key="cell_type",
+    # use_gpu=True
   )
   sc_model = RegressionModel(input_single_cell)
   sc_model.train(max_epochs=par["max_epochs_sc"], batch_size=par["sc_batch_size"])
@@ -3873,7 +3881,8 @@ meta["defaults"] = [
   "label" : [
     "hightime",
     "midmem",
-    "midcpu"
+    "midcpu",
+    "gpu"
   ],
   "tag" : "$id"
 }'''),

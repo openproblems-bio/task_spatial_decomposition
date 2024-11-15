@@ -521,15 +521,15 @@ function ViashDockerfile {
 
   if [[ "$engine_id" == "docker" ]]; then
     cat << 'VIASHDOCKER'
-FROM openproblems/base_python:1.0.0
+FROM openproblems/base_pytorch_nvidia:1.0.0
 ENTRYPOINT []
 RUN pip install --upgrade pip && \
-  pip install --upgrade --no-cache-dir "scvi-tools==1.0.4" "cell2location" "jax==0.4.23" "jaxlib==0.4.23" "scipy<1.13"
+  pip install --upgrade --no-cache-dir "scvi-tools" "cell2location" "theano" "pymc"
 
 LABEL org.opencontainers.image.description="Companion container for running component methods cell2location"
-LABEL org.opencontainers.image.created="2024-11-06T07:53:35Z"
+LABEL org.opencontainers.image.created="2024-11-15T08:48:28Z"
 LABEL org.opencontainers.image.source="https://github.com/BayraktarLab/cell2location"
-LABEL org.opencontainers.image.revision="48db076d743e61b57d8d5c720f83676d1cc8ace4"
+LABEL org.opencontainers.image.revision="465a704d2aab5a1e1573c96be95df4a97cf31a95"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER
@@ -1262,6 +1262,10 @@ trap interrupt INT SIGINT
 cat > "\$tempscript" << 'VIASHMAIN'
 import anndata as ad
 import numpy as np
+import os 
+
+os.environ["THEANO_FLAGS"] = 'device=cuda,floatX=float32,force_device=True'
+
 from cell2location.cluster_averages.cluster_averages import compute_cluster_averages
 from cell2location.models import Cell2location
 from cell2location.models import RegressionModel
@@ -1329,6 +1333,7 @@ if not par["hard_coded_reference"]:
     batch_key="batch_key",
     # cell type, covariate used for constructing signatures
     labels_key="cell_type",
+    # use_gpu=True
   )
   sc_model = RegressionModel(input_single_cell)
   sc_model.train(max_epochs=par["max_epochs_sc"], batch_size=par["sc_batch_size"])
