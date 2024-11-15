@@ -41,6 +41,8 @@ seurat_sp <- SCTransform(
 
 seurat_sp <- RunPCA(seurat_sp, assay = "SCT", verbose = FALSE, n_pcs = par$n_pcs)
 
+options(future.globals.maxSize = 30 * 1024^3)
+
 # Normalize and do dimred for single cell data
 seurat_sc <- SCTransform(
   seurat_sc,
@@ -50,7 +52,7 @@ seurat_sc <- SCTransform(
   conserve.memory = TRUE
 )
 
-seurat_sc <- RunPCA(seurat_sc, verbose = FALSE, n_pcs = par$n_pcs)
+seurat_sc <- RunPCA(seurat_sc, assay = "SCT", verbose = FALSE, n_pcs = par$n_pcs)
 
 # find anchors (MNN's to compute adjustmen vectors)
 anchors <- FindTransferAnchors(
