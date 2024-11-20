@@ -35,6 +35,7 @@ engines:
     setup:
       - type: python
         packages: 
+          - jax[cuda12]
           - scvi-tools
   
 runners:

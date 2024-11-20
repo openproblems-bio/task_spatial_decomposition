@@ -484,9 +484,9 @@ RUN pip install --upgrade pip && \
   pip install --upgrade --no-cache-dir "scvi-tools"
 
 LABEL org.opencontainers.image.description="Companion container for running component methods stereoscope"
-LABEL org.opencontainers.image.created="2024-11-15T08:48:27Z"
+LABEL org.opencontainers.image.created="2024-11-20T16:41:49Z"
 LABEL org.opencontainers.image.source="https://github.com/scverse/scvi-tools"
-LABEL org.opencontainers.image.revision="465a704d2aab5a1e1573c96be95df4a97cf31a95"
+LABEL org.opencontainers.image.revision="9f32dec1f8fe366abd433021fe0d2e0cab492aac"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER

@@ -489,9 +489,9 @@ RUN Rscript -e 'if (!requireNamespace("remotes", quietly = TRUE)) install.packag
 RUN Rscript -e 'pak::pkg_install("dmcable/spacexr")'
 
 LABEL org.opencontainers.image.description="Companion container for running component methods rctd"
-LABEL org.opencontainers.image.created="2024-11-15T08:48:28Z"
+LABEL org.opencontainers.image.created="2024-11-20T16:41:50Z"
 LABEL org.opencontainers.image.source="https://github.com/dmcable/spacexr"
-LABEL org.opencontainers.image.revision="465a704d2aab5a1e1573c96be95df4a97cf31a95"
+LABEL org.opencontainers.image.revision="9f32dec1f8fe366abd433021fe0d2e0cab492aac"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER

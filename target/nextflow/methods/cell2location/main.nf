@@ -3178,7 +3178,7 @@ meta = [
       "id" : "nextflow",
       "directives" : {
         "label" : [
-          "hightime",
+          "midtime",
           "midmem",
           "midcpu",
           "gpu"
@@ -3239,7 +3239,7 @@ meta = [
     "engine" : "docker",
     "output" : "target/nextflow/methods/cell2location",
     "viash_version" : "0.9.0",
-    "git_commit" : "465a704d2aab5a1e1573c96be95df4a97cf31a95",
+    "git_commit" : "9f32dec1f8fe366abd433021fe0d2e0cab492aac",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {
@@ -3879,7 +3879,7 @@ meta["defaults"] = [
     "tag" : "build_main"
   },
   "label" : [
-    "hightime",
+    "midtime",
     "midmem",
     "midcpu",
     "gpu"

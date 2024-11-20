@@ -3095,6 +3095,10 @@ meta = [
       "path" : "main.nf",
       "is_executable" : true,
       "entrypoint" : "run_wf"
+    },
+    {
+      "type" : "file",
+      "path" : "/_viash.yaml"
     }
   ],
   "status" : "enabled",
@@ -3247,7 +3251,7 @@ meta = [
     "engine" : "native",
     "output" : "target/nextflow/workflows/run_benchmark",
     "viash_version" : "0.9.0",
-    "git_commit" : "465a704d2aab5a1e1573c96be95df4a97cf31a95",
+    "git_commit" : "9f32dec1f8fe366abd433021fe0d2e0cab492aac",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {
@@ -3528,7 +3532,7 @@ workflow run_wf {
       def metric_configs_file = tempFile("metric_configs.yaml")
       metric_configs_file.write(metric_configs_yaml_blob)
 
-      def task_info_file = meta.resources_dir.resolve("task_info.yaml")
+      def task_info_file = meta.resources_dir.resolve("_viash.yaml")
 
       // store the scores in a file
       def score_uns = states.collect{it.score_uns}
