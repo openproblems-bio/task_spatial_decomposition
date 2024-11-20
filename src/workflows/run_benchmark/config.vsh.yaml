@@ -47,6 +47,8 @@ resources:
   - type: nextflow_script
     path: main.nf
     entrypoint: run_wf
+  - type: file
+    path: /_viash.yaml
 dependencies:
   - name: h5ad/extract_uns_metadata
     repository: core
