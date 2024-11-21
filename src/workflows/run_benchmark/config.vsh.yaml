@@ -64,6 +64,7 @@ dependencies:
   - name: methods/tangram
   - name: methods/vanillanmf
   - name: metrics/r2
+  - name: metrics/jsd
 repositories:
   - name: openproblems_v2
     type: github
