@@ -31,15 +31,35 @@ info:
       dest: resources_test/task_spatial_decomposition
 
 authors: 
-  - name: "Giovanni Palla"
+  - name: "Alma Andersson"
     roles: [author, maintainer]
     info: 
+      github: almaan
+  - name: "Giovanni Palla"
+    roles: [author]
+    info: 
       github: giovp
+  - name: "Vitalii Kleshchevnikov"
+    roles: [author]
+    info: 
+      github: vitkl
+  - name: Hirak Sarkar
+    roles: [author]
+    info: 
+      github: hiraksarkar
   - name: "Scott Gigante"
     roles: [author]
     info: 
       github: scottgigante
       orcid: "0000-0002-4544-2764"
+  - name: Daniel Burkhardt
+    roles: [contributor]
+    info: 
+      github: dburkhardt
+  - name: "Can Ergen"
+    roles: [contributor]
+    info: 
+      github: canergen
   - name: "Sai Nirmayi Yasa"
     roles: [contributor]
     info: 
