@@ -28,7 +28,8 @@ workflow run_wf {
 
   // construct list of metrics
   metrics = [
-    r2
+    r2, 
+    jsd
   ]
 
 

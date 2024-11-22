@@ -474,9 +474,9 @@ function ViashDockerfile {
 FROM openproblems/base_python:1.0.0
 ENTRYPOINT []
 LABEL org.opencontainers.image.description="Companion container for running component control_methods true_proportions"
-LABEL org.opencontainers.image.created="2024-11-20T16:41:49Z"
+LABEL org.opencontainers.image.created="2024-11-22T09:48:26Z"
 LABEL org.opencontainers.image.source="https://github.com/openproblems-bio/task_spatial_decomposition"
-LABEL org.opencontainers.image.revision="9f32dec1f8fe366abd433021fe0d2e0cab492aac"
+LABEL org.opencontainers.image.revision="f56d35bf63c2ae4525852a9f3752f6f7582e35ad"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER

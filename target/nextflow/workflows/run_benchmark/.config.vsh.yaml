@@ -256,6 +256,9 @@ dependencies:
 - name: "metrics/r2"
   repository:
     type: "local"
+- name: "metrics/jsd"
+  repository:
+    type: "local"
 repositories:
 - type: "github"
   name: "core"
@@ -303,7 +306,7 @@ build_info:
   output: "target/nextflow/workflows/run_benchmark"
   executable: "target/nextflow/workflows/run_benchmark/main.nf"
   viash_version: "0.9.0"
-  git_commit: "9f32dec1f8fe366abd433021fe0d2e0cab492aac"
+  git_commit: "f56d35bf63c2ae4525852a9f3752f6f7582e35ad"
   git_remote: "https://github.com/openproblems-bio/task_spatial_decomposition"
   dependencies:
   - "target/dependencies/github/openproblems-bio/core/build/main/nextflow/h5ad/extract_uns_metadata"
@@ -319,6 +322,7 @@ build_info:
   - "target/nextflow/methods/tangram"
   - "target/nextflow/methods/vanillanmf"
   - "target/nextflow/metrics/r2"
+  - "target/nextflow/metrics/jsd"
 package_config:
   name: "task_spatial_decomposition"
   version: "build_main"

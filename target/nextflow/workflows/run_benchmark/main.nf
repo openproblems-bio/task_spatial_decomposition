@@ -3183,6 +3183,12 @@ meta = [
       "repository" : {
         "type" : "local"
       }
+    },
+    {
+      "name" : "metrics/jsd",
+      "repository" : {
+        "type" : "local"
+      }
     }
   ],
   "repositories" : [
@@ -3251,7 +3257,7 @@ meta = [
     "engine" : "native",
     "output" : "target/nextflow/workflows/run_benchmark",
     "viash_version" : "0.9.0",
-    "git_commit" : "9f32dec1f8fe366abd433021fe0d2e0cab492aac",
+    "git_commit" : "f56d35bf63c2ae4525852a9f3752f6f7582e35ad",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {
@@ -3354,6 +3360,7 @@ include { stereoscope } from "${meta.resources_dir}/../../../nextflow/methods/st
 include { tangram } from "${meta.resources_dir}/../../../nextflow/methods/tangram/main.nf"
 include { vanillanmf } from "${meta.resources_dir}/../../../nextflow/methods/vanillanmf/main.nf"
 include { r2 } from "${meta.resources_dir}/../../../nextflow/metrics/r2/main.nf"
+include { jsd } from "${meta.resources_dir}/../../../nextflow/metrics/jsd/main.nf"
 
 // inner workflow
 // user-provided Nextflow code
@@ -3387,7 +3394,8 @@ workflow run_wf {
 
   // construct list of metrics
   metrics = [
-    r2
+    r2, 
+    jsd
   ]
 
 
