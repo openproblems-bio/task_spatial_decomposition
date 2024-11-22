@@ -36,7 +36,7 @@ authors:
     info: 
       github: almaan
   - name: "Giovanni Palla"
-    roles: [author]
+    roles: [author, maintainer]
     info: 
       github: giovp
   - name: "Vitalii Kleshchevnikov"
