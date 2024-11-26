@@ -42,11 +42,16 @@ simulated).
 
 ## Authors & contributors
 
-| name             | roles              |
-|:-----------------|:-------------------|
-| Giovanni Palla   | author, maintainer |
-| Scott Gigante    | author             |
-| Sai Nirmayi Yasa | contributor        |
+| name                   | roles              |
+|:-----------------------|:-------------------|
+| Alma Andersson         | author, maintainer |
+| Giovanni Palla         | author, maintainer |
+| Vitalii Kleshchevnikov | author             |
+| Hirak Sarkar           | author             |
+| Scott Gigante          | author             |
+| Daniel Burkhardt       | contributor        |
+| Can Ergen              | contributor        |
+| Sai Nirmayi Yasa       | contributor        |
 
 ## API
 
