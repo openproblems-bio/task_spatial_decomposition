@@ -3190,7 +3190,7 @@ meta = [
     "engine" : "docker",
     "output" : "target/nextflow/control_methods/true_proportions",
     "viash_version" : "0.9.0",
-    "git_commit" : "f56d35bf63c2ae4525852a9f3752f6f7582e35ad",
+    "git_commit" : "01b86f95a35435b420b2fcc2d2a8ece70479093d",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {
@@ -3231,6 +3231,16 @@ meta = [
     ],
     "authors" : [
       {
+        "name" : "Alma Andersson",
+        "roles" : [
+          "author",
+          "maintainer"
+        ],
+        "info" : {
+          "github" : "almaan"
+        }
+      },
+      {
         "name" : "Giovanni Palla",
         "roles" : [
           "author",
@@ -3241,6 +3251,24 @@ meta = [
         }
       },
       {
+        "name" : "Vitalii Kleshchevnikov",
+        "roles" : [
+          "author"
+        ],
+        "info" : {
+          "github" : "vitkl"
+        }
+      },
+      {
+        "name" : "Hirak Sarkar",
+        "roles" : [
+          "author"
+        ],
+        "info" : {
+          "github" : "hiraksarkar"
+        }
+      },
+      {
         "name" : "Scott Gigante",
         "roles" : [
           "author"
@@ -3248,6 +3276,24 @@ meta = [
         "info" : {
           "github" : "scottgigante",
           "orcid" : "0000-0002-4544-2764"
+        }
+      },
+      {
+        "name" : "Daniel Burkhardt",
+        "roles" : [
+          "contributor"
+        ],
+        "info" : {
+          "github" : "dburkhardt"
+        }
+      },
+      {
+        "name" : "Can Ergen",
+        "roles" : [
+          "contributor"
+        ],
+        "info" : {
+          "github" : "canergen"
         }
       },
       {

@@ -481,9 +481,9 @@ RUN pip install --upgrade pip && \
   pip install --upgrade --no-cache-dir "numpy<2.0" "scipy" "scikit-learn"
 
 LABEL org.opencontainers.image.description="Companion container for running component methods vanillanmf"
-LABEL org.opencontainers.image.created="2024-11-22T09:48:26Z"
+LABEL org.opencontainers.image.created="2024-11-26T14:14:19Z"
 LABEL org.opencontainers.image.source="https://github.com/scikit-learn/scikit-learn/blob/92c9b1866/sklearn/decomposition/"
-LABEL org.opencontainers.image.revision="f56d35bf63c2ae4525852a9f3752f6f7582e35ad"
+LABEL org.opencontainers.image.revision="01b86f95a35435b420b2fcc2d2a8ece70479093d"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER
