@@ -1,6 +1,6 @@
 type: file
 example: "resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/simulated_dataset.h5ad"
-label: "Common Dataset"
+label: "Simulated Dataset"
 summary: A subset of the common dataset.
 info:
   format:
