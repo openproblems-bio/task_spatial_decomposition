@@ -2814,7 +2814,7 @@ meta = [
         {
           "type" : "file",
           "name" : "--input",
-          "label" : "Common Dataset",
+          "label" : "Simulated Dataset",
           "summary" : "A subset of the common dataset.",
           "info" : {
             "format" : {
@@ -3248,7 +3248,7 @@ meta = [
     "engine" : "docker",
     "output" : "target/nextflow/data_processors/split_dataset",
     "viash_version" : "0.9.0",
-    "git_commit" : "01b86f95a35435b420b2fcc2d2a8ece70479093d",
+    "git_commit" : "0633f2d8a6df121e6398f3341223c9aaf0adbdfc",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {

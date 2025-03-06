@@ -67,7 +67,6 @@ flowchart TB
   comp_metric[/"<a href='https://github.com/openproblems-bio/task_spatial_decomposition#component-type-metric'>Metric</a>"/]
   file_output("<a href='https://github.com/openproblems-bio/task_spatial_decomposition#file-format-output'>Output</a>")
   file_score("<a href='https://github.com/openproblems-bio/task_spatial_decomposition#file-format-score'>Score</a>")
-  file_simulated_dataset("<a href='https://github.com/openproblems-bio/task_spatial_decomposition#file-format-common-dataset'>Common Dataset</a>")
   file_common_dataset---comp_process_dataset
   comp_process_dataset-->file_single_cell
   comp_process_dataset-->file_solution
@@ -359,49 +358,3 @@ Data structure:
 | `uns["metric_values"]` | `double` | The metric values obtained for the given prediction. Must be of same length as ‘metric_ids’. |
 
 </div>
-
-## File format: Common Dataset
-
-A subset of the common dataset.
-
-Example file:
-`resources_test/task_spatial_decomposition/cxg_mouse_pancreas_atlas/simulated_dataset.h5ad`
-
-Format:
-
-<div class="small">
-
-    AnnData object
-     obs: 'cell_type', 'batch'
-     var: 'hvg', 'hvg_score'
-     obsm: 'X_pca', 'spatial', 'proportions_true'
-     layers: 'counts'
-     uns: 'cell_type_names', 'dataset_id', 'dataset_name', 'dataset_url', 'dataset_reference', 'dataset_summary', 'dataset_description', 'dataset_organism'
-
-</div>
-
-Data structure:
-
-<div class="small">
-
-| Slot | Type | Description |
-|:---|:---|:---|
-| `obs["cell_type"]` | `string` | Cell type label IDs. |
-| `obs["batch"]` | `string` | A batch identifier. This label is very context-dependent and may be a combination of the tissue, assay, donor, etc. |
-| `var["hvg"]` | `boolean` | Whether or not the feature is considered to be a ‘highly variable gene’. |
-| `var["hvg_score"]` | `double` | A ranking of the features by hvg. |
-| `obsm["X_pca"]` | `double` | The resulting PCA embedding. |
-| `obsm["spatial"]` | `double` | (*Optional*) XY coordinates for each spot. |
-| `obsm["proportions_true"]` | `double` | (*Optional*) True cell type proportions for each spot. |
-| `layers["counts"]` | `integer` | Raw counts. |
-| `uns["cell_type_names"]` | `string` | (*Optional*) Cell type names corresponding to values in `cell_type`. |
-| `uns["dataset_id"]` | `string` | A unique identifier for the dataset. |
-| `uns["dataset_name"]` | `string` | Nicely formatted name. |
-| `uns["dataset_url"]` | `string` | (*Optional*) Link to the original source of the dataset. |
-| `uns["dataset_reference"]` | `string` | (*Optional*) Bibtex reference of the paper in which the dataset was published. |
-| `uns["dataset_summary"]` | `string` | Short description of the dataset. |
-| `uns["dataset_description"]` | `string` | Long description of the dataset. |
-| `uns["dataset_organism"]` | `string` | (*Optional*) The organism of the sample in the dataset. |
-
-</div>
-
