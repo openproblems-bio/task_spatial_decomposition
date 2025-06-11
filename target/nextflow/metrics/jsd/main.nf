@@ -3136,7 +3136,7 @@ meta = [
     {
       "type" : "docker",
       "id" : "docker",
-      "image" : "openproblems/base_python:1.0.0",
+      "image" : "openproblems/base_python:1",
       "namespace_separator" : "/",
       "setup" : [
         {
@@ -3157,7 +3157,7 @@ meta = [
     "engine" : "docker",
     "output" : "target/nextflow/metrics/jsd",
     "viash_version" : "0.9.0",
-    "git_commit" : "0633f2d8a6df121e6398f3341223c9aaf0adbdfc",
+    "git_commit" : "892ab4818b3d28656cd1a05f71b34c4d31af1de2",
     "git_remote" : "https://github.com/openproblems-bio/task_spatial_decomposition"
   },
   "package_config" : {

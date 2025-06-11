@@ -480,15 +480,15 @@ function ViashDockerfile {
 
   if [[ "$engine_id" == "docker" ]]; then
     cat << 'VIASHDOCKER'
-FROM openproblems/base_r:1.0.0
+FROM openproblems/base_r:1
 ENTRYPOINT []
 RUN Rscript -e 'if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")' && \
   Rscript -e 'remotes::install_cran(c("Matrix", "Seurat"), repos = "https://cran.rstudio.com")'
 
 LABEL org.opencontainers.image.description="Companion container for running component methods seurat"
-LABEL org.opencontainers.image.created="2025-03-06T13:54:11Z"
+LABEL org.opencontainers.image.created="2025-06-11T11:42:32Z"
 LABEL org.opencontainers.image.source="https://github.com/satijalab/seurat"
-LABEL org.opencontainers.image.revision="0633f2d8a6df121e6398f3341223c9aaf0adbdfc"
+LABEL org.opencontainers.image.revision="892ab4818b3d28656cd1a05f71b34c4d31af1de2"
 LABEL org.opencontainers.image.version="build_main"
 
 VIASHDOCKER
