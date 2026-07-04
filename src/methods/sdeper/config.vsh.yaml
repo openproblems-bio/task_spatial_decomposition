@@ -1,0 +1,91 @@
+# The API specifies which type of component this is.
+# It contains specifications for:
+#   - The input/output files
+#   - Common parameters
+#   - A unit test
+__merge__: ../../api/comp_method.yaml
+
+# A unique identifier for your component (required).
+# Can contain only lowercase letters or underscores.
+name: sdeper
+# A relatively short label, used when rendering visualisations (required)
+label: SDePER
+# A one sentence summary of how this method works (required). Used when 
+# rendering summary tables.
+summary: "SDePER is a hybrid machine learning and regression method for cell-type deconvolution of spatial barcoding-based transcriptomic data."
+# A multi-line description of how this component works (required). Used
+# when rendering reference documentation.
+description: |
+  SDePER, Spatial Deconvolution method with Platform Effect Removal, estimates
+  cell-type compositions in spot-based spatial transcriptomics using reference
+  single-cell RNA-seq data. It accounts for platform effects between spatial and
+  single-cell data, sparsity of cell types per capture spot, and spatial
+  correlation across neighboring spots.
+
+references:
+  doi: 10.1186/s13059-024-03416-2
+  
+links:
+  # URL to the documentation for this method (required).
+  documentation: https://sdeper.readthedocs.io/
+  # URL to the code repository for this method (required).
+  repository: https://github.com/az7jh2/SDePER
+
+
+
+# Metadata for your component
+info:
+  # Which normalisation method this component prefers to use (required).
+  preferred_normalization: counts
+  variants:
+    sdeper_use_cvae_true:
+      use_cvae: true
+    sdeper_use_cvae_false:
+      use_cvae: false
+
+# Component-specific parameters (optional)
+arguments:
+  - name: "--use_cvae"
+    type: boolean
+    default: true
+    description: Whether to use the Conditional Variational Autoencoder to remove platform effects between spatial transcriptomics and reference scRNA-seq data.
+
+  - name: "--n_cores"
+    type: integer
+    default: 20
+    description: Number of CPU cores used by SDePER for parallel computing.
+
+# Resources required to run the component
+resources:
+  # The script of your component (required)
+  - type: python_script
+    path: script.py
+  # Additional resources your script needs (optional)
+  # - type: file
+  #   path: weights.pt
+
+engines:
+  # Specifications for the Docker image for this component.
+  - type: docker
+    image: az7jh2/sdeper:2.0.2
+    # Add custom dependencies here (optional). For more information, see
+    # https://viash.io/reference/config/engines/docker/#setup .
+    # setup:
+    #   - type: python
+    #     packages: numpy<2
+    
+    # also need to install openproblems Python package
+    setup:
+      - type: apt
+        packages:
+          - git
+      - type: python
+        github: openproblems-bio/core#subdirectory=packages/python/openproblems
+
+runners:
+  # This platform allows running the component natively
+  - type: executable
+  # Allows turning the component into a Nextflow module / pipeline.
+  - type: nextflow
+    directives:
+      label: [midtime,midmem,midcpu]
